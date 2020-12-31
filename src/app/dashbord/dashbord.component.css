@@ -1,0 +1,26 @@
+.dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  .class1{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 230px;
+      width: 400px;
+      flex: 1;
+      text-align: center;
+      background-color:rgb(39, 0, 0);
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #fff;
+      text-size-adjust: auto;
+  }
+  .class2{
+    color:rgb(249, 229, 188);
+  }
+  
