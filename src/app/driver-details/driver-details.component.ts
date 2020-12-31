@@ -31,7 +31,7 @@ export class DriverDetailsComponent implements OnInit {
     this.drivers = this.driverDetailsService.getAllDrivers();
   }
 
-  selectedDriver(id: String) {
+  selectedDriver(id: string) {
     this.router.navigate(["/driverprofile", id]);
   }
 

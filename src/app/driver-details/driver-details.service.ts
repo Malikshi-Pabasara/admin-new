@@ -8,7 +8,7 @@ export class DriverDetailsService {
 
   constructor() { }
 
-  drivers:Driver[] = [
+  drivers:Driver[]  = [
 
     { id : '1', name : 'mali', email : 'mali@gmail.com', password : '123' },
     { id : "2", name : "paba", email : "paba@gmail.com", password : "123" },
@@ -20,7 +20,7 @@ export class DriverDetailsService {
     return [...this.drivers]
   }
 
-  getSelectedDriver(id:string){
+  getSelectedDriver(id:any){
     const driver = this.drivers.find(driver=>driver.id === id);
     return driver;
 
