@@ -1,18 +1,45 @@
-
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-    </mat-toolbar-row>
-</mat-toolbar>
-
-
-<div>
-  <h1> Hello </h1>
-  <p> {{driver?.id}} </p>
-  <p> {{driver?.name}} </p>
-  <p> {{driver?.email}} </p>
-  <p> {{driver?.password}} </p>
+<div class="col class2">
+  
+  <img class="class7" src="{{driver?.img}}">
 </div>
+<div class="col class3">
+  <mat-toolbar class="class1">
+    <mat-toolbar-row><h1>{{driver?.name}} Profile</h1></mat-toolbar-row>
+  </mat-toolbar>
+  <mat-list>
+    <div class="col class5">
+      <mat-list-item>Name:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Email:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>NIC Number:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Mobile Number:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Vehical Number:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Vehical Color:</mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="col class6">
+    <mat-list-item>{{driver?.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{driver?.email}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{driver?.nicNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{driver?.mobileNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{driver?.vehicalNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{driver?.vehicalColor}}</mat-list-item>
+    <mat-divider></mat-divider>
 
-<div style="text-align: end;">
-  <button mat-button (click)="driverDetails()"> Drivers </button>
+    </div>
+  </mat-list>
+  <div style="text-align: end;">
+    <br><br><br>
+    <button mat-raised-button  class="class8" routerLink='/driver'>Driver List</button>
+  </div>
+  
 </div>

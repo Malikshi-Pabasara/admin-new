@@ -1,5 +1,10 @@
 .class1{
     margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:30px;
+    background-color: rgb(39, 0, 0);
+    color: #fff;
 }
 .class2{
     color: rgb(249, 229, 188);
@@ -10,4 +15,12 @@
 .table{
     margin-left: auto;
     margin-right: auto;
+    width: 50%;
+}
+.class4{
+        margin-left:auto;
+        height:25px;
+}
+.class5{
+    background-color:#e6ddc5;
 }

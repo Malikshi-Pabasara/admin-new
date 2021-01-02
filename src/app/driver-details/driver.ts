@@ -3,4 +3,9 @@ export interface Driver {
   name: string;
   email: string;
   password: string;
+  nicNumber: string;
+  mobileNumber:string;
+  vehicalNumber:string;
+  vehicalColor:string;
+  img:string;
 }

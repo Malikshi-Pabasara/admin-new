@@ -1,1 +1,46 @@
-<p>mechanic-profile works!</p>
+<div class="col class2">
+  <img class="class7" src="{{mechanic?.img}}">
+
+</div>
+<div class="col class3">
+  <mat-toolbar class="class1">
+    <mat-toolbar-row>{{mechanic?.name}} profile</mat-toolbar-row>
+  </mat-toolbar>
+  <mat-list>
+    <div class="col class5">
+      <mat-list-item>Name:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Email:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>NIC Number:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Mobile Number:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Address:</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>About:</mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="col class6">
+    <mat-list-item>{{mechanic?.name}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{mechanic?.email}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{mechanic?.nicNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{mechanic?.mobileNumber}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>{{mechanic?.address}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item >{{mechanic?.about}}</mat-list-item>
+    <mat-divider ></mat-divider>
+
+    </div>
+  </mat-list>
+  <div style="text-align: end;">
+    <br><br><br>
+    <button mat-raised-button class="class8" routerLink='/mechanic'>Mechanic List</button>
+  </div>
+  
+</div>
+

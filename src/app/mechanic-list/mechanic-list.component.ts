@@ -12,8 +12,8 @@ import { MechanicListService } from "./mechanic-list.service";
   styleUrls: ['./mechanic-list.component.css']
 })
 export class MechanicListComponent implements OnInit {
-  title = "Angular Search Using ng2-search-filter";
-  // searchText:string;
+ 
+  searchText !: string;
   mechanics: Mechanic[] = [];
  
    constructor(

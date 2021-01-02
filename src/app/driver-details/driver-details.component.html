@@ -1,32 +1,33 @@
-<mat-toolbar color="#d5bee7">
+<mat-toolbar class="class5">
   <label color="primary">Driver List</label>
-
+  
+  <input type="text" [(ngModel)]='searchText' placeholder="Search" class="class4" >
+  
 </mat-toolbar>
-
-<div class="container" text-align="center">
-  <table class="table">
+<br>
+<div class="container" >
+  <table class="table" text-align="center"> 
     <tr>
-      <th>id</th>
+      <th >id</th>
       <th>name</th>
       <th>email</th>
-      <th></th>
+      <th>action</th>
     </tr>
 
-    <tr *ngFor="let driver of drivers">
-      <td>{{ driver?.id }}</td>
-      <td>{{ driver?.name }}</td>
-      <td>{{ driver?.email }}</td>
-      <td>
+    <tr *ngFor="let driver of drivers | driverFilter:searchText" >
+      <td style="text-align:center">{{ driver?.id }}</td>
+      <td style="text-align:center">{{ driver?.name }}</td>
+      <td style="text-align:center">{{ driver?.email }}</td>
+      <td style="text-align:center">
         <button
           mat-raised-button
-          color="primary"
           (click)="selectedDriver(driver.id)"
+          class="class1"
         >
           View
         </button>
         <button
           mat-raised-button
-          color="primary"
           (click)="openDialog()"
           class="class1"
         >
@@ -35,10 +36,4 @@
       </td>
     </tr>
   </table>
-</div>
-
-<div style="text-align: end">
-  <button mat-button (click)="goToDashboard()" background-color="primary">
-    Dashboard
-  </button>
 </div>

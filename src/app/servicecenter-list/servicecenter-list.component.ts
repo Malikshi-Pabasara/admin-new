@@ -12,8 +12,8 @@ import { ServicecenterListService } from "./servicecenter-list.service";
   styleUrls: ['./servicecenter-list.component.css']
 })
 export class ServicecenterListComponent implements OnInit {
-  title = "Angular Search Using ng2-search-filter";
-  // searchText:string;
+  
+  searchText !:string;
   servicecenters: Servicecenter[] = [];
  
    constructor(

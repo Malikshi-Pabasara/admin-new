@@ -12,8 +12,7 @@ import { SpareshopListService } from "./spareshop-list.service";
   styleUrls: ['./spareshop-list.component.css']
 })
 export class SpareshopListComponent implements OnInit {
-  title = "Angular Search Using ng2-search-filter";
-  // searchText:string;
+   searchText!:string;
   spareshops: Spareshop[] = [];
  
    constructor(

@@ -7,13 +7,16 @@ import { Driver } from './driver';
 export class DriverDetailsService {
 
   constructor() { }
-
   drivers:Driver[]  = [
 
-    { id : '1', name : 'mali', email : 'mali@gmail.com', password : '123' },
-    { id : "2", name : "paba", email : "paba@gmail.com", password : "123" },
-    { id : "3", name : "saku", email : "saku@gmail.com", password : "123" },
-
+    { id : '1', name : 'mali', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
+    { id : "2", name : "paba", email : "paba@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img2.jpg'},
+    { id : "3", name : "saku", email : "saku@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img4.jpg'},
+    { id : '4', name : 'kiti', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
+    { id : "5", name : "pabaya", email : "paba@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img2.jpg'},
+    { id : "6", name : "rathi", email : "saku@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img4.jpg'},
+    { id : '7', name : 'mali', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
+    
   ]
 
   getAllDrivers(){

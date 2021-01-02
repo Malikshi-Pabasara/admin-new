@@ -1,7 +1,10 @@
-<mat-toolbar color="#d5bee7">
+<mat-toolbar class="class5">
     <label color="primary">Mechanic List</label>
     
+  <input type="text" [(ngModel)]='searchText' placeholder="Search" class="class4" >
+  
   </mat-toolbar>
+  <br>
   
   <div class="container" text-align="center">
     <table class="table">
@@ -9,24 +12,23 @@
         <th>id</th>
         <th>name</th>
         <th>email</th>
-        <th></th>
+        <th>action</th>
       </tr>
   
-      <tr *ngFor="let mechanic of mechanics">
-        <td>{{ mechanic.id }}</td>
-        <td>{{ mechanic.name }}</td>
-        <td>{{ mechanic.email }}</td>
-        <td>
+      <tr *ngFor="let mechanic of mechanics | mechanicFilter:searchText">
+        <td style="text-align:center">{{ mechanic.id }}</td>
+        <td style="text-align:center">{{ mechanic.name }}</td>
+        <td style="text-align:center">{{ mechanic.email }}</td>
+        <td style="text-align:center">
           <button
             mat-raised-button
-            color="primary"
             (click)="selectedMechanic(mechanic.id)"
+            class="class1"
           >
             View
           </button>
           <button
             mat-raised-button
-            color="primary"
             (click)="openDialog()"
             class="class1"
           >
@@ -36,10 +38,4 @@
       </tr>
     </table>
   </div>
-  
-  <div style="text-align: end">
-    <button mat-button (click)="goToDashboard()" background-color="primary">
-      Dashboard
-    </button>
-  </div>
-  
+ 

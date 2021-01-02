@@ -1,15 +1,25 @@
-<mat-card  style="background-color: rgb(39, 0, 0); color : #fff">
-    <span>Admin Panel</span>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/dashbord">
-                <mat-icon>home</mat-icon>
-                <span color="#fff">Home</span>
-            </button>
+<mat-toolbar style="background-color: rgb(39, 0, 0); color : #fff">
+    <button >
+     <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
+   </button>
 
-            <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
-            </button>
-        </mat-menu>
-</mat-card>
+   <mat-menu #menu="matMenu">
+
+        <button mat-menu-item routerLink="/dashboard">
+            <mat-icon >home</mat-icon>
+            <span color="#fff">Home</span>
+        </button>
+
+        <button mat-menu-item routerLink="">
+            <mat-icon >logout</mat-icon>
+            <span color="#fff">Logout</span>
+        </button>
+            
+    </mat-menu>
+    <span>Admin Panel</span>
+</mat-toolbar>
+
+    
+    
+        
 <router-outlet></router-outlet>

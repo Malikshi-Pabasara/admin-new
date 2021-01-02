@@ -13,14 +13,14 @@ import { DriverDetailsService } from "./driver-details.service";
   styleUrls: ["./driver-details.component.css"],
 })
 export class DriverDetailsComponent implements OnInit {
-  title = "Angular Search Using ng2-search-filter";
- // searchText:string;
+  //title = 'Angular Search Using ng2-search-filter';
+  searchText !: string;
   drivers: Driver[] = [];
 
   constructor(
     public dialog: MatDialog,
     private driverDetailsService: DriverDetailsService,
-    private router: Router
+    private router: Router,
   ) {}
 
   openDialog() {

@@ -31,7 +31,15 @@ import { DriverProfileComponent } from './driver-profile/driver-profile.componen
 import { MechanicProfileComponent } from './mechanic-profile/mechanic-profile.component';
 import { ServicecenterProfileComponent } from './servicecenter-profile/servicecenter-profile.component';
 import { SpareshopProfileComponent } from './spareshop-profile/spareshop-profile.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import { FilterPipe } from './filter.pipe'; 
+import { DriverDetailsPipe } from './driver-details/driver-details.pipe';
+import { FormsModule } from '@angular/forms';
+import { MechanicListPipe } from './mechanic-list/mechanic-list.pipe';
+import { ServicecenterListPipe } from './servicecenter-list/servicecenter-list.pipe';
+import { SpareshopListPipe } from './spareshop-list/spareshop-list.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +54,12 @@ import { SpareshopProfileComponent } from './spareshop-profile/spareshop-profile
     DriverProfileComponent,
     MechanicProfileComponent,
     ServicecenterProfileComponent,
-    SpareshopProfileComponent
+    SpareshopProfileComponent,
+    FilterPipe,
+    DriverDetailsPipe,
+    MechanicListPipe,
+    ServicecenterListPipe,
+    SpareshopListPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +75,11 @@ import { SpareshopProfileComponent } from './spareshop-profile/spareshop-profile
     MatProgressSpinnerModule,
     MatDialogModule,
     MatFormFieldModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatTableModule,
+    MatDividerModule,
+    MatListModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
