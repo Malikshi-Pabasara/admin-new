@@ -1,10 +1,10 @@
 <mat-toolbar style="background-color: rgb(39, 0, 0); color : #fff">
-    <button >
+
+  <button>
      <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
-   </button>
+  </button>
 
    <mat-menu #menu="matMenu">
-
         <button mat-menu-item routerLink="/dashboard">
             <mat-icon >home</mat-icon>
             <span color="#fff">Home</span>
@@ -14,12 +14,12 @@
             <mat-icon >logout</mat-icon>
             <span color="#fff">Logout</span>
         </button>
-            
-    </mat-menu>
-    <span>Admin Panel</span>
+
+  </mat-menu>
+    <span style="margin-left: 10px;">Admin Panel</span>
 </mat-toolbar>
 
-    
-    
-        
+
+
+
 <router-outlet></router-outlet>

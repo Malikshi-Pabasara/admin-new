@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Driver } from './driver';
 
 @Injectable({
@@ -6,21 +8,17 @@ import { Driver } from './driver';
 })
 export class DriverDetailsService {
 
-  constructor() { }
-  drivers:Driver[]  = [
-
-    { id : '1', name : 'mali', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
-    { id : "2", name : "paba", email : "paba@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img2.jpg'},
-    { id : "3", name : "saku", email : "saku@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img4.jpg'},
-    { id : '4', name : 'kiti', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
-    { id : "5", name : "pabaya", email : "paba@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img2.jpg'},
-    { id : "6", name : "rathi", email : "saku@gmail.com", password : "123",nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img4.jpg'},
-    { id : '7', name : 'mali', email : 'mali@gmail.com', password : '123',nicNumber : '985181063V', mobileNumber : '0768851673' , vehicalNumber : 'CAT-4587', vehicalColor :'red',img:'assets/img/img3.jpg'},
-    
-  ]
+  constructor(private http:HttpClient) { }
+  drivers:Driver[]  = []
+  drivers$ = new BehaviorSubject<Driver[]>([])
 
   getAllDrivers(){
-    return [...this.drivers]
+    this.http.get<Driver[]>('http://localhost:3000/api/drivers/alldrivers')
+    .subscribe(response=>{
+
+      this.drivers = response
+      this.drivers$.next(this.drivers)
+    })
   }
 
   getSelectedDriver(id:any){

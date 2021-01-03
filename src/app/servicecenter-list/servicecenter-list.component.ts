@@ -12,28 +12,31 @@ import { ServicecenterListService } from "./servicecenter-list.service";
   styleUrls: ['./servicecenter-list.component.css']
 })
 export class ServicecenterListComponent implements OnInit {
-  
+
   searchText !:string;
   servicecenters: Servicecenter[] = [];
- 
+
    constructor(
      public dialog: MatDialog,
      private servicecenterListService: ServicecenterListService,
      private router: Router
    ) {}
- 
+
    openDialog() {
      this.dialog.open(DialogOverviewExampleDialogComponent);
    }
- 
+
    ngOnInit() {
-     this.servicecenters = this.servicecenterListService.getAllServicecenters();
+     this.servicecenterListService.getAllServicecenters();
+     this.servicecenterListService.servicecenters$.subscribe((servicecenters$=>{
+       this.servicecenters = servicecenters$
+     }))
    }
- 
+
    selectedServicecenter(id: String) {
      this.router.navigate(["/servicecenterprofile", id]);
    }
- 
+
    goToDashboard() {
      this.router.navigate(["/dashboard"]);
    }

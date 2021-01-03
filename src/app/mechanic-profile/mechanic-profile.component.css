@@ -14,7 +14,28 @@
     height: 100%;
     margin-block-end: auto;
     float: left;
+    animation-name: moveInLeft;
+    animation-duration: 2s;
 }
+
+@keyframes moveInLeft{
+  0%{
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  25%{
+    transform: translateX(60px);
+  }
+  60%{
+    transform: translateX(20px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 .class4{
     margin-left: 20%;
     margin-right: 20%;

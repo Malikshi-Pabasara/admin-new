@@ -1,45 +1,74 @@
-.class1{
-    background-color: #e6ddc5;
-    text-size-adjust: 100%;
-    width: 100%;
+.class1 {
+  background-color: #e6ddc5;
+  text-size-adjust: 100%;
+  width: 100%;
 }
-.class2{
-    background-color:#e6ddc5;
-    width: 25%;
-    height: 100%;
-    float: left;
+
+.class2 {
+  background-color: #e6ddc5;
+  width: 25%;
+  height: 100%;
+  float: left;
 }
-.class3{
-    width: 75%;
-    height: 100%;
-    margin-block-end: auto;
-    float: left;
+
+.class3 {
+  width: 75%;
+  height: 100%;
+  margin-block-end: auto;
+  float: left;
+  animation-name: moveInLeft;
+  animation-duration: 2s;
 }
-.class4{
-    margin-left: 20%;
-    margin-right: 20%;
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  25% {
+    transform: translateX(60px);
+  }
+
+  60% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
-.class5{
-    width: 30%;
-    height: 100%;
-    margin-block-end: auto;
-    float: left;
-    font-weight: bold;
+
+.class4 {
+  margin-left: 20%;
+  margin-right: 20%;
 }
-.class6{
-    width: 70%;
-    height: 100%;
-    margin-block-end: auto;
-    float: left;
+
+.class5 {
+  width: 30%;
+  height: 100%;
+  margin-block-end: auto;
+  float: left;
+  font-weight: bold;
 }
-.class7{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    margin-top: 20px;
+
+.class6 {
+  width: 70%;
+  height: 100%;
+  margin-block-end: auto;
+  float: left;
 }
-.class8{
-    background-color: rgb(39, 0, 0);
-     color : #fff
+
+.class7 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.class8 {
+  background-color: rgb(39, 0, 0);
+  color: #fff
 }

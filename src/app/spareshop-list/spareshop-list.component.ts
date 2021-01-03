@@ -14,25 +14,28 @@ import { SpareshopListService } from "./spareshop-list.service";
 export class SpareshopListComponent implements OnInit {
    searchText!:string;
   spareshops: Spareshop[] = [];
- 
+
    constructor(
      public dialog: MatDialog,
      private spareshopListService: SpareshopListService,
      private router: Router
    ) {}
- 
+
    openDialog() {
      this.dialog.open(DialogOverviewExampleDialogComponent);
    }
- 
+
    ngOnInit() {
-     this.spareshops = this.spareshopListService.getAllSpareshops();
+     this.spareshopListService.getAllSpareshops();
+     this.spareshopListService.spareshops$.subscribe((spareshops$=>{
+       this.spareshops = spareshops$
+     }))
    }
- 
+
    selectedSpareshop(id: String) {
      this.router.navigate(["/spareshopprofile", id]);
    }
- 
+
    goToDashboard() {
      this.router.navigate(["/dashboard"]);
    }

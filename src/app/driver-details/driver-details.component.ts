@@ -28,7 +28,11 @@ export class DriverDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.drivers = this.driverDetailsService.getAllDrivers();
+    this.driverDetailsService.getAllDrivers()
+    this.driverDetailsService.drivers$.subscribe(drivers$=>{
+
+      this.drivers = drivers$
+    })
   }
 
   selectedDriver(id: string) {

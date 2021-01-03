@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Servicecenter } from './servicecenter';
 
 @Injectable({
@@ -6,23 +8,21 @@ import { Servicecenter } from './servicecenter';
 })
 export class ServicecenterListService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   servicecenters:Servicecenter[] = [
 
-    { id : '1001', name : 'mali', email : 'mali@gmail.com', password : '123' , mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img3.jpg'},
-    { id : "2002", name : "paba", email : "paba@gmail.com", password : "123" , mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img2.jpg'},
-    { id : "3003", name : "saku", email : "saku@gmail.com", password : "123" ,  mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img4.jpg'},
-    { id : '4001', name : 'mali', email : 'mali@gmail.com', password : '123' , mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img3.jpg'},
-    { id : "5002", name : "paba", email : "paba@gmail.com", password : "123" , mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img2.jpg'},
-    { id : "6003", name : "saku", email : "saku@gmail.com", password : "123" ,  mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img4.jpg'},
-    { id : "7003", name : "saku", email : "saku@gmail.com", password : "123" ,  mobileNumber:'0768851673', address:'moragahena, horana', openTime:'7am',closeTime:'7pm',img:'assets/img/img4.jpg'},
 
   ]
+  servicecenters$ = new BehaviorSubject<Servicecenter[]>([])
 
   getAllServicecenters(){
-    return [...this.servicecenters]
-  }
+    this.http.get<Servicecenter[]>('http://localhost:3000/api/service-centers/allserviceCenters')
+    .subscribe(response=>{
+
+      this.servicecenters = response
+      this.servicecenters$.next(this.servicecenters)
+    })  }
 
   getSelectedServicecenter(id:any){
     const servicecenter = this.servicecenters.find(servicecenter=>servicecenter.id === id)

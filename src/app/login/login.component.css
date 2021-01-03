@@ -1,22 +1,42 @@
 .login__page{
-    height: 100%;
-    width: 100%;
-    background-color: rgb(39, 0, 0);
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(39, 0, 0);
   }
-  
-  
+
   .login__card{
     width: 80%;
-    height: 80%;
-    margin:  auto;
+    margin: 20px auto;
     text-align: center;
     background-color: white;
   }
-  
+
+  .input{
+    width: 90%;
+     height: 30px;
+  }
+
   mat-form-field{
     width: 90%;
     max-width: auto;
   }
-  
+
+  .btn{
+    text-align: end;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width:700px){
+    .button{
+      width: 100%;
+    }
+    .login__card{
+      width: 98%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }

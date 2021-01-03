@@ -12,28 +12,31 @@ import { MechanicListService } from "./mechanic-list.service";
   styleUrls: ['./mechanic-list.component.css']
 })
 export class MechanicListComponent implements OnInit {
- 
+
   searchText !: string;
   mechanics: Mechanic[] = [];
- 
+
    constructor(
      public dialog: MatDialog,
      private mechanicListService: MechanicListService,
      private router: Router
    ) {}
- 
+
    openDialog() {
      this.dialog.open(DialogOverviewExampleDialogComponent);
    }
- 
+
    ngOnInit() {
-     this.mechanics = this.mechanicListService.getAllMechanics();
+     this.mechanicListService.getAllMechanics();
+     this.mechanicListService.mechanics$.subscribe(mechanics$=>{
+       this.mechanics = mechanics$
+     })
    }
- 
+
    selectedMechanic(id: String) {
      this.router.navigate(["/mechenicprofile", id]);
    }
- 
+
    goToDashboard() {
      this.router.navigate(["/dashboard"]);
    }
