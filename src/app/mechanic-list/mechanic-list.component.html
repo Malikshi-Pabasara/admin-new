@@ -1,41 +1,57 @@
-<mat-toolbar class="class5">
-    <label color="primary">Mechanic List</label>
-    
-  <input type="text" [(ngModel)]='searchText' placeholder="Search" class="class4" >
-  
-  </mat-toolbar>
-  <br>
-  
-  <div class="container" text-align="center">
-    <table class="table">
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>email</th>
-        <th>action</th>
-      </tr>
-  
-      <tr *ngFor="let mechanic of mechanics | mechanicFilter:searchText">
-        <td style="text-align:center">{{ mechanic.id }}</td>
-        <td style="text-align:center">{{ mechanic.name }}</td>
-        <td style="text-align:center">{{ mechanic.email }}</td>
-        <td style="text-align:center">
-          <button
-            mat-raised-button
-            (click)="selectedMechanic(mechanic.id)"
-            class="class1"
-          >
-            View
-          </button>
-          <button
-            mat-raised-button
-            (click)="openDialog()"
-            class="class1"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </table>
-  </div>
- 
+<mat-toolbar class="toolbar">
+  <h2 class="list"> Mechanic List </h2>
+
+  <mat-form-field fxFlex="40%">
+    <mat-label style="font-size: 15px;color: rgb(39, 0, 0)"> Search </mat-label>
+   <input matInput type="text" (keyup)="doFilter($event)"
+    >
+ </mat-form-field>
+
+ <!-- <input type="text" [(ngModel)]='searchText' placeholder="Search"
+  style="height: 20px;" > -->
+
+</mat-toolbar>
+
+<div style="display: flex;
+justify-content: flex-end;width: 90%; margin: 0 auto;">
+ <button (click)="createMechanic()" mat-button color="primary">
+   Create Mechanic
+   <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+ <ng-container
+  class="header" matColumnDef="NIC">
+   <th mat-header-cell *matHeaderCellDef> NIC </th>
+   <td mat-cell *matCellDef="let element"> {{element.nic}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="Name">
+   <th mat-header-cell *matHeaderCellDef> Name </th>
+   <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="Email">
+   <th mat-header-cell *matHeaderCellDef> Email </th>
+   <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="Action">
+   <th mat-header-cell *matHeaderCellDef> Action </th>
+   <td mat-cell *matCellDef="let element">
+     <button (click)="selectedMechanic(element._id)" matTooltip="View page"  mat-icon-button color="primary"> <mat-icon>bookmark</mat-icon> </button>
+     <button (click)="openDialog(element._id)" matTooltip="Delete driver"  mat-icon-button color="warn"> <mat-icon>delete</mat-icon> </button>
+   </td>
+ </ng-container>
+
+
+
+ <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+

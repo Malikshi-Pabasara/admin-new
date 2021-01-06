@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Driver } from '../driver-details/driver';
 import { DriverDetailsService } from '../driver-details/driver-details.service';
+import { DriverService } from '../users/driver/driver.service';
 
 export interface user {
   id: string;
@@ -26,14 +27,17 @@ export class DriverProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+
     this.route.paramMap.subscribe((paramMap) => {
       if (paramMap.has('id')) {
-        let id = paramMap.get('id');
 
-        this.driver = this.driverDetailsService.getSelectedDriver(id)
+        let id = paramMap.get('id');
+        this.driver = this.driverDetailsService.onSelectDriver(id)
       }
     });
   }
+
 
   driverDetails() {
     this.router.navigate(['/driver']);

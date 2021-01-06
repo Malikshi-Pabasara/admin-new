@@ -1,27 +1,16 @@
-.class1{
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width:20px;
-    background-color: rgb(39, 0, 0);
-    color: #fff;
-}
-.class2{
-    color: rgb(249, 229, 188);
-}
-.class3{
-    margin-left: 1300px;
-}
-.table{
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-.class4{
-    margin-left:auto;
-    height:25px;
+
+
+table {
+  width: 98%;
+  margin: 20px auto;
 
 }
-.class5{
+.toolbar{
     background-color:#e6ddc5;
+    display: flex;
+    padding-top: 20px;
+}
+
+.list{
+  flex: 1;
 }

@@ -1,0 +1,23 @@
+.user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user__account{
+  flex: 1;
+  margin: 1%;
+  width: 100%;
+}
+
+.user__data{
+  flex: 1;
+  margin: 1%;
+}
+
+
+
+.field{
+  width: 100%;
+}
+

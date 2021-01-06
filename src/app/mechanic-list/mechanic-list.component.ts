@@ -1,10 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from "@angular/router";
-import { Ng2SearchPipe } from "ng2-search-filter";
 import { DialogOverviewExampleDialogComponent } from "../dialog-overview-example-dialog/dialog-overview-example-dialog.component";
+import { DriverDetailsService } from '../driver-details/driver-details.service';
 import { Mechanic } from "./mechanic";
 import { MechanicListService } from "./mechanic-list.service";
+import {Driver} from '../driver-details/driver'
+import { MechanicService } from '../users/mechanic/mechanic.service';
+
+let mechanics:Driver[] = []
 
 @Component({
   selector: 'app-mechanic-list',
@@ -13,31 +19,57 @@ import { MechanicListService } from "./mechanic-list.service";
 })
 export class MechanicListComponent implements OnInit {
 
-  searchText !: string;
-  mechanics: Mechanic[] = [];
+  displayedColumns: string[] = ['NIC', 'Name', 'Email', 'Action'];
+  dataSource:any
 
-   constructor(
-     public dialog: MatDialog,
-     private mechanicListService: MechanicListService,
-     private router: Router
-   ) {}
+  constructor(
+    public dialog: MatDialog,
+    private mechanicDetailsService: MechanicListService,
+    private router: Router,
+    ) {}
 
-   openDialog() {
-     this.dialog.open(DialogOverviewExampleDialogComponent);
-   }
 
-   ngOnInit() {
-     this.mechanicListService.getAllMechanics();
-     this.mechanicListService.mechanics$.subscribe(mechanics$=>{
-       this.mechanics = mechanics$
-     })
-   }
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-   selectedMechanic(id: String) {
-     this.router.navigate(["/mechenicprofile", id]);
-   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
-   goToDashboard() {
-     this.router.navigate(["/dashboard"]);
-   }
+    ngOnInit() {
+
+      this.mechanicDetailsService.fetchMechanic()
+      this.mechanicDetailsService.mechanics$.subscribe((mechanics$)=>{
+        mechanics = mechanics$
+        this.dataSource = new MatTableDataSource<Driver>(mechanics);
+      })
+
+
+  }
+
+  openDialog(id:string) {
+    const dialog = this.dialog.open(DialogOverviewExampleDialogComponent);
+    dialog.afterClosed().subscribe(data=>{
+      if(data){
+        this.mechanicDetailsService.deleteMechanic(id)
+      }
+    })
+  }
+
+  createMechanic(){
+    this.router.navigate(['/create-mechanic'])
+  }
+
+   doFilter = (value:Event) => {
+    this.dataSource.filter = (value.target as HTMLInputElement).value
+    .trim().toLocaleLowerCase();
+  }
+
+
+  selectedMechanic(id: string) {
+    this.router.navigate(["/mechenicprofile", id]);
+  }
+
+  goToDashboard() {
+    this.router.navigate(["/dashboard"]);
+  }
 }

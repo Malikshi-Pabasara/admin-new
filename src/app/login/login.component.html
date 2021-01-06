@@ -4,29 +4,30 @@
     <br /><br />
     <h1 style="font-size: 40px;"><b> Panel Login</b></h1>
 
+    <form (submit)="login(f)" #f="ngForm">
     <mat-form-field>
     <label
     ><h1><b>User Name:</b></h1></label
     >
-    <input type="text" matInput class="input" />
+    <input ngModel name="email" type="text" matInput class="input" />
   </mat-form-field>
 
   <mat-form-field >
     <label
     ><h1><b>Password:</b></h1></label
     >
-    <input type="password" matInput class="input" />
+    <input ngModel name="password" type="password" matInput class="input" />
   </mat-form-field>
 
   <div class="btn">
     <button class="button"
-    (click)="login()"
     mat-raised-button
     style="background-color: rgb(39, 0, 0); color: #fff"
     >
     Enter
   </button>
 </div>
+</form>
 </div>
 
 </div>

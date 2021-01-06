@@ -1,0 +1,42 @@
+.field{
+  width: 100%;
+}
+
+input[type="file"]{
+  visibility: hidden;
+}
+.form{
+  width: 98%;
+  margin: 20px auto;
+}
+
+.image-preview{
+  width: 100px;
+  height: 100px;
+}
+
+.image-preview img{
+  height: 100%;
+}
+
+.data{
+  animation-name: moveInLeft;
+  animation-duration: 3s;
+}
+
+@keyframes moveInLeft{
+  0%{
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  30%{
+    transform: translateX(10px);
+  }
+  60%{
+    transform: translateX(30px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

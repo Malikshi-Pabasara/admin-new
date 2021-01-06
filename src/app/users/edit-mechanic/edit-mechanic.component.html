@@ -1,0 +1,71 @@
+<div  class="data">
+  <div style="text-align: center;">
+    <h2 style="color: rgb(39, 0, 0);">Add value to created Mechanic</h2>
+</div>
+<div class="form">
+
+  <form [formGroup]="mechanicForm" (submit)="onSubmitMechanicData()">
+    <mat-card>
+      <mat-form-field class="field">
+        <mat-label>Name</mat-label>
+      <input formControlName="name" matInput  name="name" />
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput  name="email" />
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>NIC</mat-label>
+      <input formControlName="nic" matInput  name="nic" />
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>Mobile</mat-label>
+      <input formControlName="mobile" matInput  name="mobile" />
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>Address</mat-label>
+      <input
+      formControlName="address"
+      matInput
+
+        name="vehicleNo"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <mat-label>About</mat-label>
+        <input
+        formControlName="about"
+        matInput
+
+        name="vehicleColor"
+        />
+      </mat-form-field>
+
+    <input type="file" #image (change)="onImageChange($event)" />
+    <div style="text-align: start;">
+      <button (click)="image.click()" mat-stroked-button type="button">
+        Image
+      </button>
+    </div>
+
+    <div
+    class="image-preview"
+    *ngIf="imagePreview != '' && imagePreview != null"
+    >
+    <img [src]="imagePreview" alt="image preview" />
+  </div>
+    <div style="text-align: end;">
+      <button style="background-color: rgb(39, 0, 0);color: white;"
+      mat-raised-button> Save </button>
+    </div>
+  </mat-card>
+</form>
+
+</div>
+
+</div>

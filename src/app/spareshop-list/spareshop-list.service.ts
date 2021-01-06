@@ -8,26 +8,48 @@ import { Spareshop } from './spareshop';
 })
 export class SpareshopListService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
+  spareshops: Spareshop[] = [];
+  spareshops$ = new BehaviorSubject<Spareshop[]>([]);
 
-  spareshops:Spareshop[] = [
+  getAllDrivers() {
+    this.http
+      .get<Spareshop[]>('http://localhost:3000/api/drivers/alldrivers')
+      .subscribe((response) => {
+        this.spareshops = response;
+        this.spareshops$.next(this.spareshops);
+      });
+  }
 
-      ]
-      spareshops$ = new BehaviorSubject<Spareshop[]>([])
+  fetchSpareShop() {
+    this.http
+      .get<Spareshop[]>('http://localhost:3000/api/sparepart-shops/allsparepartShops')
+      .subscribe((data) => {
+
+        this.spareshops = data;
+        this.spareshops$.next(this.spareshops);
+      });
+
+  }
+
+  deleteSpareshop(id:string){
+
+    const spareshops = this.spareshops.filter(spareshop=> spareshop._id != id)
+    this.http.delete('http://localhost:3000/api/sparepart-shops/delete-spareshop/'+id)
+    .subscribe(()=>{
+      this.spareshops$.next(spareshops)
+    })
+  }
 
 
+  getAll() {
+    return [...this.spareshops];
+  }
 
-  getAllSpareshops(){
-    this.http.get<Spareshop[]>('http://localhost:3000/api/sparepart-shops/allsparepartShops')
-    .subscribe(response=>{
+  onSelectShop(id: any) {
+    const spareshop = this.spareshops.find((spareshop) => spareshop._id
+     == id);
 
-      this.spareshops = response
-      this.spareshops$.next(this.spareshops)
-    })  }
-
-  getSelectedSpareshop(id:any){
-    const spareshop = this.spareshops.find(spareshop=>spareshop.id === id)
     return spareshop;
-
   }
 }

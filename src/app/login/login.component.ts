@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
-  login(){
-    this.router.navigate(['/dashboard'])
+  login(form:NgForm){
+    const {email, password} = form.value
+    this.authService.login(email, password)
   }
 }

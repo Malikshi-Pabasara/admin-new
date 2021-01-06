@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,14 +15,14 @@ import { SpareshopListComponent } from './spareshop-list/spareshop-list.componen
 import { ServicecenterListComponent } from './servicecenter-list/servicecenter-list.component';
 import { DriverProfileComponent } from './driver-profile/driver-profile.component';
 import { MechanicProfileComponent } from './mechanic-profile/mechanic-profile.component';
-import { ServicecenterListPipe } from './servicecenter-list/servicecenter-list.pipe';
-import { SpareshopListPipe } from './spareshop-list/spareshop-list.pipe';
 import { ServicecenterProfileComponent } from './servicecenter-profile/servicecenter-profile.component';
 import { SpareshopProfileComponent } from './spareshop-profile/spareshop-profile.component';
 import { DriverDetailsPipe } from './driver-details/driver-details.pipe';
-import { MechanicListPipe } from './mechanic-list/mechanic-list.pipe';
-import { FilterPipe } from './filter.pipe';
 import { MaterialModule } from './material/material.module';
+import { UsersModule } from './users/users.module';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { ErrorInterceptor } from './auth/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,11 +38,8 @@ import { MaterialModule } from './material/material.module';
     MechanicProfileComponent,
     ServicecenterProfileComponent,
     SpareshopProfileComponent,
-    FilterPipe,
     DriverDetailsPipe,
-    MechanicListPipe,
-    ServicecenterListPipe,
-    SpareshopListPipe
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +47,17 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    UsersModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 <div class="col class2">
-  <img class="class7" src="{{mechanic?.img}}">
+  <img class="class7" src="{{mechanic?.image}}">
 
 </div>
 <div class="col class3">
@@ -7,6 +7,7 @@
     <mat-toolbar-row>{{mechanic?.name}} profile</mat-toolbar-row>
   </mat-toolbar>
   <mat-list>
+
     <div class="col class5">
       <mat-list-item>Name:</mat-list-item>
       <mat-divider></mat-divider>
@@ -26,9 +27,9 @@
     <mat-divider></mat-divider>
     <mat-list-item>{{mechanic?.email}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>{{mechanic?.nicNumber}}</mat-list-item>
+    <mat-list-item>{{mechanic?.nic}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>{{mechanic?.mobileNumber}}</mat-list-item>
+    <mat-list-item>{{mechanic?.mobile}}</mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>{{mechanic?.address}}</mat-list-item>
     <mat-divider></mat-divider>
@@ -39,7 +40,8 @@
   </mat-list>
   <div style="text-align: end;">
     <br><br><br>
-    <button mat-raised-button class="class8" routerLink='/mechanic'>Mechanic List</button>
+    <button mat-raised-button class="class8" routerLink='/mechanic'>
+      Mechanic List</button>
   </div>
 
 </div>

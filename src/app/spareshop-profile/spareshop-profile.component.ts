@@ -3,12 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Spareshop } from '../spareshop-list/spareshop';
 import { SpareshopListService } from '../spareshop-list/spareshop-list.service';
 
-export interface user {
-  id: string;
-  name: '';
-  email: '';
-  password: '';
-}
+
 
 @Component({
   selector: 'app-spareshop-profile',
@@ -30,7 +25,7 @@ export class SpareshopProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.spareshop = this.spareshopListService.getSelectedSpareshop(id)
+        this.spareshop = this.spareshopListService.onSelectShop(id)
       }
     });
   }

@@ -1,12 +1,10 @@
 export interface Servicecenter{
-    id: string;
-    name: string;
-    email: string;
-    password: string;
-    mobileNumber: string;
-    address: string;
-    openTime: string;
-    closeTime: string;
-    img:string;
+    _id?: string;
+    name?: string;
+    email?: string;
+    mobile?: string;
+    address?: string;
+    openTime?: string;
+    closeTime?: string;
+    image?:string;
   }
-  

@@ -3,12 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Mechanic } from '../mechanic-list/mechanic';
 import { MechanicListService } from '../mechanic-list/mechanic-list.service';
 
-export interface user {
-  id: string;
-  name: '';
-  email: '';
-  password: '';
-}
+
 
 @Component({
   selector: 'app-mechanic-profile',
@@ -30,7 +25,7 @@ export class MechanicProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.mechanic = this.mechanicListService.getSelectedMechanic(id)
+        this.mechanic = this.mechanicListService.onSelectMechanic(id)
       }
     });
   }

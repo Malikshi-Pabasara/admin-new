@@ -8,25 +8,48 @@ import { Servicecenter } from './servicecenter';
 })
 export class ServicecenterListService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
+  serviceCenters: Servicecenter[] = [];
+  serviceCenters$ = new BehaviorSubject<Servicecenter[]>([]);
 
-  servicecenters:Servicecenter[] = [
-
-
-  ]
-  servicecenters$ = new BehaviorSubject<Servicecenter[]>([])
-
-  getAllServicecenters(){
-    this.http.get<Servicecenter[]>('http://localhost:3000/api/service-centers/allserviceCenters')
-    .subscribe(response=>{
-
-      this.servicecenters = response
-      this.servicecenters$.next(this.servicecenters)
-    })  }
-
-  getSelectedServicecenter(id:any){
-    const servicecenter = this.servicecenters.find(servicecenter=>servicecenter.id === id)
-    return servicecenter;
-
+  getAllServiceCenter() {
+    this.http
+      .get<Servicecenter[]>('http://localhost:3000/api/service-centers/allserviceCenters')
+      .subscribe((response) => {
+        this.serviceCenters = response;
+        this.serviceCenters$.next(this.serviceCenters);
+      });
   }
+
+  fetchServiceCenter() {
+    this.http
+      .get<Servicecenter[]>('http://localhost:3000/api/service-centers/allserviceCenters')
+      .subscribe((data) => {
+        this.serviceCenters = data;
+        this.serviceCenters$.next(this.serviceCenters);
+      });
+  }
+
+  deleteServiceCenter(id:string){
+
+
+    const serviceCenters = this.serviceCenters.filter(service=>
+       service._id != id)
+    this.http.delete('http://localhost:3000/api/service-centers/deleteservice-center/'+id)
+    .subscribe(()=>{
+      this.serviceCenters$.next(serviceCenters)
+    })
+  }
+
+  getAll() {
+    return [...this.serviceCenters];
+  }
+
+  onSelectServiceCenter(id: any) {
+    const serviceCenter = this.serviceCenters.find((serviceCenter) =>
+     serviceCenter._id == id);
+
+    return serviceCenter;
+  }
+
 }

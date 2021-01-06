@@ -17,7 +17,9 @@
 
   </mat-menu>
     <span style="margin-left: 10px;">Admin Panel</span>
-</mat-toolbar>
+    <span style="flex: 1 1 auto;"></span>
+    <span *ngIf="isLoging"> <button mat-button (click)="logout()"> Logout </button> </span>
+  </mat-toolbar>
 
 
 

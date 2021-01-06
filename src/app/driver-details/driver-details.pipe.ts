@@ -6,14 +6,15 @@ import { Driver } from './driver';
 })
 
 export class DriverDetailsPipe implements PipeTransform{
-    transform(drivers: Driver[], searchText:string): Driver[]
+    transform(drivers: Driver[], searchText:string)
     {
-        if(!drivers || !searchText){
-            return drivers;
-        }
+      // : Driver[]
+        // if(!drivers || !searchText){
+        //     return drivers;
+        // }
 
-        return drivers.filter(driver =>
-            driver.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1);
-            
+        // return drivers.filter(driver =>
+        //     driver.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1);
+
     }
 }
