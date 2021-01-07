@@ -30,7 +30,10 @@ export class ServicecenterProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.servicecenter = this.servicecenterListService.onSelectServiceCenter(id)
+        this.servicecenterListService.onSelectServiceCenter(id)
+        .subscribe(serviceCenter$=>{
+          this.servicecenter = serviceCenter$
+        })
       }
     });
   }

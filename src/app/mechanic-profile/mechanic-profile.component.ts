@@ -25,7 +25,9 @@ export class MechanicProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.mechanic = this.mechanicListService.onSelectMechanic(id)
+        this.mechanicListService.onSelectMechanic(id).subscribe(mechanic$=>{
+          this.mechanic = mechanic$
+        })
       }
     });
   }

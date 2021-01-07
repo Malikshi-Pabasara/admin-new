@@ -16,6 +16,8 @@ export class AppComponent implements OnInit{
     this.authService.authState()
     this.authService.isLogin$.subscribe((isLogin$)=>{
       this.isLoging = isLogin$
+
+
     })
   }
 

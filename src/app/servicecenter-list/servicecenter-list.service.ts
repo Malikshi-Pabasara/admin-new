@@ -46,10 +46,11 @@ export class ServicecenterListService {
   }
 
   onSelectServiceCenter(id: any) {
-    const serviceCenter = this.serviceCenters.find((serviceCenter) =>
-     serviceCenter._id == id);
+    let driver = this.serviceCenters.find((service) => service._id == id);
+    return this.http.get('http://localhost:3000/api/service-centers/one-service/'+id)
+    // this.selectedDriver.next(driver)
+    // return driver;
 
-    return serviceCenter;
   }
 
 }

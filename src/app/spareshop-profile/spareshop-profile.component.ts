@@ -25,7 +25,10 @@ export class SpareshopProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.spareshop = this.spareshopListService.onSelectShop(id)
+        this.spareshopListService.onSelectShop(id)
+        .subscribe(spareshop$=>{
+          this.spareshop = spareshop$
+        })
       }
     });
   }

@@ -21,8 +21,8 @@ import { SpareShopComponent } from './users/spare-shop/spare-shop.component';
 
 
 const routes: Routes = [
-  {path:'' , component:LoginComponent},
-  {path:'dashboard' , component:DashbordComponent},
+  {path:'' , component:DashbordComponent},
+  {path:'login' , component:LoginComponent},
 
   {path:'driver' , component:DriverDetailsComponent},
   {path:'create-driver' , component:DriverComponent},

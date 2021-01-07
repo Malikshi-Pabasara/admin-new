@@ -47,9 +47,9 @@ export class SpareshopListService {
   }
 
   onSelectShop(id: any) {
-    const spareshop = this.spareshops.find((spareshop) => spareshop._id
-     == id);
-
-    return spareshop;
+    let driver = this.spareshops.find((spare) => spare._id == id);
+    return this.http.get('http://localhost:3000/api/sparepart-shops/one-spareshop/'+id)
+    // this.selectedDriver.next(driver)
+    // return driver;
   }
 }

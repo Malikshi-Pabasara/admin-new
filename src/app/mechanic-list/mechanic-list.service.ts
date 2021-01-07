@@ -43,9 +43,11 @@ export class MechanicListService {
   }
 
   onSelectMechanic(id: any) {
-    const mechanic = this.mechanics.find((mechanic) => mechanic._id == id);
+      let driver = this.mechanics.find((mechanic) => mechanic._id == id);
+      return this.http.get('http://localhost:3000/api/mechanics/one-mechanic/'+id)
+      // this.selectedDriver.next(driver)
+      // return driver;
+    }
 
-    return mechanic;
-  }
 
 }

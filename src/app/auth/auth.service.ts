@@ -23,7 +23,7 @@ export class AuthService {
 
     }else{
       this.isLogin$.next(false)
-      this.router.navigate(['/'])
+      this.router.navigate(['/login'])
     }
 
   }
@@ -36,7 +36,7 @@ export class AuthService {
       this.isLogin$.next(true)
       this.token = token
       localStorage.setItem('token', token)
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/'])
 
     })
   }
@@ -44,6 +44,6 @@ export class AuthService {
   logout(){
     this.isLogin$.next(false)
     localStorage.removeItem('token')
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
 }

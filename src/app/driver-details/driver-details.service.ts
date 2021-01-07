@@ -12,20 +12,21 @@ export class DriverDetailsService {
   drivers$ = new BehaviorSubject<Driver[]>([]);
   selectedDriver:any = new BehaviorSubject(undefined)
 
-  getAllDrivers() {
-    this.http
-      .get<Driver[]>('http://localhost:3000/api/drivers/alldrivers')
-      .subscribe((response) => {
-        this.drivers = response;
-        this.drivers$.next(this.drivers);
-      });
-  }
+  // getAllDrivers() {
+  //   this.http
+  //     .get<Driver[]>('http://localhost:3000/api/drivers/alldrivers')
+  //     .subscribe((response) => {
+  //       this.drivers = response;
+  //       this.drivers$.next(this.drivers);
+  //     });
+  // }
 
   fetchDriver() {
     this.http
       .get<Driver[]>('http://localhost:3000/api/drivers/alldrivers')
       .subscribe((data) => {
         this.drivers = data;
+
         this.drivers$.next(this.drivers);
       });
   }
@@ -38,13 +39,13 @@ export class DriverDetailsService {
     })
   }
 
-  getAll() {
-    return [...this.drivers];
-  }
-
+  // getAll() {
+  //   return [...this.drivers];
+  // }
   onSelectDriver(id: any) {
     let driver = this.drivers.find((driver) => driver._id == id);
-    this.selectedDriver.next(driver)
-    return driver;
+    return this.http.get('http://localhost:3000/api/drivers/one-driver/'+id)
+    // this.selectedDriver.next(driver)
+    // return driver;
   }
 }
