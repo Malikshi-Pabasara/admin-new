@@ -36,5 +36,8 @@ export class SpareshopProfileComponent implements OnInit {
   spareshopDetails() {
     this.router.navigate(['/spare']);
   }
+  updateShop(id:any){
+    this.router.navigate(['/create-spare', id])
+  }
 
 }

@@ -36,13 +36,17 @@
     <mat-list-item >{{mechanic?.about}}</mat-list-item>
     <mat-divider ></mat-divider>
 
+    <div class="bottom__panel">
+      <button mat-raised-button (click)="updateMechanic(mechanic?._id)"
+       class="class8">Update Mechanic</button>
+      <button mat-raised-button class="class8" routerLink="/mechanic">
+        Mechanic List
+      </button>
+    </div>
+
     </div>
   </mat-list>
-  <div style="text-align: end;">
-    <br><br><br>
-    <button mat-raised-button class="class8" routerLink='/mechanic'>
-      Mechanic List</button>
-  </div>
+
 
 </div>
 

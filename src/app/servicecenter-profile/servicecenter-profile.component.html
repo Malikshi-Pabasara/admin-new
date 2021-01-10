@@ -34,12 +34,16 @@
     <mat-list-item>{{servicecenter?.closeTime}}</mat-list-item>
     <mat-divider></mat-divider>
 
+    <div class="bottom__panel">
+      <button mat-raised-button (click)="updateService(servicecenter?._id)"
+       class="class8">Update Service Center</button>
+      <button mat-raised-button class="class8" routerLink="/service">
+        Service Center List
+      </button>
+    </div>
+
     </div>
   </mat-list>
-  <div style="text-align: end;">
-    <br><br><br>
-    <button class="class8" mat-raised-button routerLink='/service'>
-      ServiceCenter List</button>
-  </div>
+
 
 </div>

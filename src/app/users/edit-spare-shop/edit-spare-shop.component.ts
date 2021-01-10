@@ -1,34 +1,78 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ServiceCenterService } from '../service-center/service-center.service';
-import { SpareShopService } from '../spare-shop/spare-shop.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Spareshop } from 'src/app/spareshop-list/spareshop';
+import { SpareshopListService } from 'src/app/spareshop-list/spareshop-list.service';
+import { SpareShopService } from './spare-shop.service';
 
 @Component({
   selector: 'app-edit-spare-shop',
   templateUrl: './edit-spare-shop.component.html',
-  styleUrls: ['./edit-spare-shop.component.css']
+  styleUrls: ['./edit-spare-shop.component.css'],
 })
 export class EditSpareShopComponent implements OnInit {
+  constructor(
+    private sparepartService: SpareShopService,
+    private routes: ActivatedRoute,
+    private spareshopDetailsService: SpareshopListService
+  ) {}
 
-  constructor(private sparepartService:SpareShopService) {}
+  mode = 'create';
+  spareShop!: Spareshop;
   imagePreview = '';
 
   spareShopForm = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
-    mobile: new FormControl(),
-    address: new FormControl(),
-    about: new FormControl(),
-    openTime: new FormControl(),
-    closeTime: new FormControl(),
-    image: new FormControl(),
+    name: new FormControl('', { validators: [Validators.required] }),
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+    }),
+    password: new FormControl('', { validators: [Validators.required] }),
+    mobile: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ],
+    }),
+    address: new FormControl('', { validators: [Validators.required] }),
+    about: new FormControl('', { validators: [Validators.required] }),
+    openTime: new FormControl('', { validators: [Validators.required] }),
+    closeTime: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl('', { validators: [Validators.required] }),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routes.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        const id = params.get('id');
+        this.mode = 'update';
+        this.spareshopDetailsService.onSelectShop(id).subscribe((service$) => {
+          this.spareShop = service$;
+
+          this.spareShopForm.patchValue({
+            image: this.spareShop.image,
+          });
+        });
+      }
+    });
+  }
 
   onSubmitDriverData() {
-    this.sparepartService.onSubmitSpareshopData(this.spareShopForm.value)
+    if (this.mode == 'create') {
+      if (this.spareShopForm.invalid) {
+        console.log('invalid');
 
+        return;
+      }
+      this.sparepartService.onSubmitSpareshopData(this.spareShopForm.value);
+    } else {
+      console.log('update');
+      const updatedData = {
+        ...this.spareShopForm.value,
+        id: this.spareShop._id,
+      };
+      this.sparepartService.onUpdateSpareshopData(updatedData);
+    }
   }
 
   onImageChange(event: Event) {
@@ -47,7 +91,4 @@ export class EditSpareShopComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
-
-
 }

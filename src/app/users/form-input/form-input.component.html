@@ -1,0 +1,30 @@
+
+<mat-form-field class="field">
+  <mat-label>{{ label }}</mat-label>
+  <input [(ngModel)]="value"
+   [formControl]="controler" matInput [name]="label" />
+</mat-form-field>
+
+<div *ngIf="controler.dirty && controler.errors">
+
+  <div *ngIf="controler.errors?.required">
+    <mat-error> {{label}} required </mat-error>
+  </div>
+
+  <div *ngIf="controler.errors?.email">
+    <mat-error> Invalid Email </mat-error>
+  </div>
+
+  <div *ngIf="controler.errors?.minlength">
+    <mat-error> Minimum characters {{controler.errors?.minlength.requiredLength}} </mat-error>
+  </div>
+
+  <div *ngIf="controler.errors?.maxlength">
+    <mat-error> Maximum characters {{controler.errors?.maxlength.requiredLength}} </mat-error>
+  </div>
+
+  <!-- <div *ngIf="controler.errors?.required">
+    <mat-error> Invalid Email </mat-error>
+  </div> -->
+
+</div>

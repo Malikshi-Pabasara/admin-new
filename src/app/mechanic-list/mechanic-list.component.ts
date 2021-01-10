@@ -8,7 +8,7 @@ import { DriverDetailsService } from '../driver-details/driver-details.service';
 import { Mechanic } from "./mechanic";
 import { MechanicListService } from "./mechanic-list.service";
 import {Driver} from '../driver-details/driver'
-import { MechanicService } from '../users/mechanic/mechanic.service';
+import { MechanicService } from '../users/edit-mechanic/mechanic.service';
 
 let mechanics:Driver[] = []
 

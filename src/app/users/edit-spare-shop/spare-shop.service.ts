@@ -10,29 +10,15 @@ export class SpareShopService {
   constructor(private http: HttpClient, private router:Router) {}
 
 
-
-  onCreateSpareShop(email: string, password: string) {
-    this.http.post('http://localhost:3000/api/sparepart-shops/create-spareshop', {
-      email,
-      password,
-    }).subscribe((data)=>{
-      console.log(data);
-      this.router.navigate(['/spare-data'])
-
-    },error=>{
-      throw new Error(error.message)
-
-    });
-  }
-
   onSubmitSpareshopData(spareData:any){
-    const {email,name,
+    const {email,name,password,
        address, about,openTime, closeTime,
         mobile,image} = spareData
 
         const formData = new FormData()
         formData.append('name', name)
         formData.append('email', email)
+        formData.append('password', password)
         formData.append('mobile', mobile)
         formData.append('address', address)
         formData.append('about', about)
@@ -46,4 +32,16 @@ export class SpareShopService {
         },error=>{
           throw new Error(error.message)
         })
-  }}
+  }
+
+  onUpdateSpareshopData(spareShopData:any){
+    const id = spareShopData.id
+      this.http.patch('http://localhost:3000/api/sparepart-shops/update/'+id, spareShopData)
+      .subscribe((data)=>{
+        this.router.navigate(['/spare'])
+
+      })
+
+    }
+
+}

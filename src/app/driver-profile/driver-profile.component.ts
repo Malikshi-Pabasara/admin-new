@@ -37,10 +37,17 @@ export class DriverProfileComponent implements OnInit {
         })
       }
     });
+
+
+
   }
 
 
   driverDetails() {
     this.router.navigate(['/driver']);
+  }
+
+  updateDriver(id:any){
+    this.router.navigate(['/create-driver', id])
   }
 }

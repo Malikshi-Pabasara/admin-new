@@ -9,29 +9,17 @@ export class MechanicService {
 
   constructor(private http: HttpClient, private router:Router) {}
 
-  onCreateMechanic(email: string, password: string) {
-    this.http.post('http://localhost:3000/api/mechanics/createmechanic', {
-      email,
-      password,
-    }).subscribe((data)=>{
-      console.log(data);
-      this.router.navigate(['/mechanic-data'])
-
-    },error=>{
-      throw new Error(error.message)
-
-    });
-  }
 
   onSubmitMechanicData(driverData:any){
     const {email,name, nic,
-       about, address,
+       about, address,password,
         mobile,image} = driverData
 
         const formData = new FormData()
         formData.append('name', name)
         formData.append('email', email)
-        formData.append('nic', nic)
+        formData.append('password', password)
+        formData.append('nic', nic+'V')
         formData.append('address', address)
         formData.append('about', about)
         formData.append('mobile', mobile)
@@ -44,4 +32,13 @@ export class MechanicService {
           throw new Error(error.message)
         })
   }
+  onUpdateMechanicData(mechanicData:any){
+    const id = mechanicData.id
+      this.http.patch('http://localhost:3000/api/mechanics/update/'+id, mechanicData)
+      .subscribe((data)=>{
+        this.router.navigate(['/mechanic'])
+
+      })
+
+    }
 }

@@ -1,31 +1,86 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MechanicService } from '../mechanic/mechanic.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Mechanic } from 'src/app/mechanic-list/mechanic';
+import { MechanicListService } from 'src/app/mechanic-list/mechanic-list.service';
+import { MechanicService } from './mechanic.service';
 
 @Component({
   selector: 'app-edit-mechanic',
   templateUrl: './edit-mechanic.component.html',
-  styleUrls: ['./edit-mechanic.component.css']
+  styleUrls: ['./edit-mechanic.component.css'],
 })
 export class EditMechanicComponent implements OnInit {
+  constructor(private mechanicService: MechanicService,
+    private routes:ActivatedRoute,
+    private mechanicDetailsService:MechanicListService,
+    ) {}
 
-  constructor(private mechanicService:MechanicService) {}
+    mode = 'create'
+    mechanic!:Mechanic
   imagePreview = '';
 
   mechanicForm = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
-    nic: new FormControl(),
-    mobile: new FormControl(),
-    address: new FormControl(),
-    about: new FormControl(),
-    image: new FormControl(),
+    name: new FormControl('', { validators: [Validators.required] }),
+
+    email: new FormControl('', { validators: [Validators.required, Validators.email] }),
+
+    password: new FormControl('', { validators:
+       [Validators.required] }),
+    nic: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ],
+    }),
+
+    mobile: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ],
+    }),
+    address: new FormControl('', { validators: [Validators.required] }),
+    about: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl('', { validators: [Validators.required] }),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routes.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        const id = params.get('id');
+        this.mode = 'update';
+        this.mechanicDetailsService.onSelectMechanic(id).subscribe(service$=>{
+          this.mechanic = service$
+
+          this.mechanicForm.patchValue({
+            image: this.mechanic.image
+
+          })
+        })
+
+      }
+    });
+  }
 
   onSubmitMechanicData() {
-    this.mechanicService.onSubmitMechanicData(this.mechanicForm.value)
+
+    if(this.mode == 'create'){
+      if (this.mechanicForm.invalid) {
+        console.log('invalid');
+
+        return;
+      }
+      this.mechanicService.onSubmitMechanicData(this.mechanicForm.value);
+
+    }else{
+      console.log('update');
+      const updatedData = {...this.mechanicForm.value, id:this.mechanic._id}
+      this.mechanicService.onUpdateMechanicData(updatedData);
+
+    }
 
   }
 
@@ -45,5 +100,4 @@ export class EditMechanicComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
 }

@@ -23,6 +23,7 @@ import { UsersModule } from './users/users.module';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ErrorInterceptor } from './auth/error.interceptor';
     ServicecenterProfileComponent,
     SpareshopProfileComponent,
     DriverDetailsPipe,
-    AuthComponent
+    AuthComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

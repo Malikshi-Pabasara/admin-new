@@ -12,6 +12,11 @@ export class DashbordComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  goToReport(){
+    this.router.navigate(['/reports'])
+  }
+
   goToDriver(){
     this.router.navigate(['/driver'])
   }

@@ -68,7 +68,16 @@
   margin-top: 20px;
 }
 
+
 .class8 {
   background-color: rgb(39, 0, 0);
-  color: #fff
+  color: #fff;
+  margin-left: 20px;
+}
+
+.bottom__panel{
+  display: flex;
+  margin: 20px;
+  justify-content: flex-end;
+
 }

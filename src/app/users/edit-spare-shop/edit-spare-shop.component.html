@@ -2,71 +2,64 @@
 
 
   <div style="text-align: center;">
-    <h2 style="color: rgb(39, 0, 0);">Add value to created Spare part shop</h2>
+    <h2 *ngIf="!spareShop" style="color: rgb(39, 0, 0);">Create spare part shop</h2>
+    <h2 *ngIf="spareShop" style="color: rgb(39, 0, 0);">Update spare part shop</h2>
 </div>
 <div class="form">
 
 
   <form [formGroup]="spareShopForm" (submit)="onSubmitDriverData()">
     <mat-card>
-      <mat-form-field class="field">
-        <mat-label>Name</mat-label>
-      <input formControlName="name" matInput  name="name" />
-    </mat-form-field>
 
-    <mat-form-field class="field">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput  name="email" />
-    </mat-form-field>
+      <app-form-input
+      [value]="spareShop?.email"
+          label="Email"
+          [controler]="spareShopForm.get('email')"
+        ></app-form-input>
 
+      <app-form-input *ngIf="!spareShop"
+          label="Password"
+          [controler]="spareShopForm.get('password')"
+        ></app-form-input>
 
+      <app-form-input
+      [value]="spareShop?.name"
+          label="Name"
+          [controler]="spareShopForm.get('name')"
+        ></app-form-input>
 
-    <mat-form-field class="field">
-      <mat-label>Mobile</mat-label>
-      <input formControlName="mobile" matInput  name="mobile" />
-    </mat-form-field>
+      <app-form-input
+      [value]="spareShop?.mobile"
+          label="Mobile"
+          [controler]="spareShopForm.get('mobile')"
+        ></app-form-input>
 
-    <mat-form-field class="field">
-      <mat-label>Address</mat-label>
-      <input
-      formControlName="address"
-      matInput
+      <app-form-input
+      [value]="spareShop?.address"
+          label="Address"
+          [controler]="spareShopForm.get('address')"
+        ></app-form-input>
 
-        name="address"
-        />
-      </mat-form-field>
+      <app-form-input
+      [value]="spareShop?.about"
+          label="About"
+          [controler]="spareShopForm.get('about')"
+        ></app-form-input>
 
-      <mat-form-field class="field">
-        <mat-label> About</mat-label>
-        <input
-        formControlName="about"
-        matInput
+      <app-form-input
+      [value]="spareShop?.openTime"
+          label="Open Time"
+          [controler]="spareShopForm.get('openTime')"
+        ></app-form-input>
 
-        name="about"
-        />
-
-      </mat-form-field>
-      <mat-form-field class="field">
-        <mat-label> Opening Time</mat-label>
-        <input
-        formControlName="openTime"
-        matInput
-
-        name="openTime"
-        />
-      </mat-form-field>
-      <mat-form-field class="field">
-        <mat-label> Closing Time</mat-label>
-        <input
-        formControlName="closeTime"
-        matInput
-
-        name="closeTime"
-        />
-      </mat-form-field>
+      <app-form-input
+      [value]="spareShop?.closeTime"
+          label="Close Time"
+          [controler]="spareShopForm.get('closeTime')"
+        ></app-form-input>
 
     <input type="file" #image (change)="onImageChange($event)" />
-    <div style="text-align: start;">
+    <div *ngIf="!spareShop" style="text-align: start;">
       <button (click)="image.click()" mat-stroked-button type="button">
         Image
       </button>

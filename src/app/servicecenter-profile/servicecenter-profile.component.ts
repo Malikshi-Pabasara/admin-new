@@ -42,4 +42,8 @@ export class ServicecenterProfileComponent implements OnInit {
     this.router.navigate(['/service']);
   }
 
+  updateService(id:any){
+    this.router.navigate(['/create-service', id])
+  }
+
 }

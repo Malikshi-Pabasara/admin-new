@@ -35,4 +35,7 @@ export class MechanicProfileComponent implements OnInit {
   mechanicDetails() {
     this.router.navigate(['/mechanic']);
   }
+  updateMechanic(id:any){
+    this.router.navigate(['/create-mechanic', id])
+  }
 }

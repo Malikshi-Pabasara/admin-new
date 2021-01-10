@@ -1,10 +1,11 @@
 <div class="col class2">
-
-  <img class="class7" src="{{driver?.image}}">
+  <img class="class7" src="{{ driver?.image }}" />
 </div>
 <div class="col class3">
   <mat-toolbar class="class1">
-    <mat-toolbar-row><h1>{{driver?.name}} Profile</h1></mat-toolbar-row>
+    <mat-toolbar-row
+      ><h1>{{ driver?.name }}'s profile</h1></mat-toolbar-row
+    >
   </mat-toolbar>
   <mat-list>
     <div class="col class5">
@@ -22,24 +23,26 @@
       <mat-divider></mat-divider>
     </div>
     <div class="col class6">
-    <mat-list-item>{{driver?.name}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{driver?.email}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{driver?.nic}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{driver?.mobile}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{driver?.vehicleNumber}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{driver?.vehicleColor}}</mat-list-item>
-    <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.name }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.email }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.nic }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.mobile }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.vehicleNumber }}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{ driver?.vehicleColor }}</mat-list-item>
+      <mat-divider></mat-divider>
 
+      <div class="bottom__panel">
+        <button mat-raised-button (click)="updateDriver(driver?._id)"
+         class="class8">Update Driver</button>
+        <button mat-raised-button class="class8" routerLink="/driver">
+          Driver List
+        </button>
+      </div>
     </div>
   </mat-list>
-  <div style="text-align: end;">
-    <br><br><br>
-    <button mat-raised-button  class="class8" routerLink='/driver'>Driver List</button>
-  </div>
-
 </div>

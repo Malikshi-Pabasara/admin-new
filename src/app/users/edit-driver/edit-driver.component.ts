@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { DriverService } from '../driver/driver.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Driver } from 'src/app/driver-details/driver';
+import { DriverDetailsService } from 'src/app/driver-details/driver-details.service';
+import { DriverService } from './driver.service';
 
 @Component({
   selector: 'app-edit-driver',
@@ -8,24 +11,87 @@ import { DriverService } from '../driver/driver.service';
   styleUrls: ['./edit-driver.component.css'],
 })
 export class EditDriverComponent implements OnInit {
-  constructor(private driverService:DriverService) {}
+  constructor(
+    private driverService: DriverService,
+    private routes: ActivatedRoute,
+    private driverDetailsService: DriverDetailsService
+  ) {}
+
+  mode = 'create';
+  driver!: Driver;
+
   imagePreview = '';
 
   driverForm = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
-    nic: new FormControl(),
-    mobile: new FormControl(),
-    vehicleNumber: new FormControl(),
-    vehicleColor: new FormControl(),
-    image: new FormControl(),
+    name: new FormControl('', { validators: [Validators.required] }),
+
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+    }),
+
+    password: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
+
+    nic: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ],
+    }),
+
+    mobile: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+      ],
+    }),
+    vehicleNumber: new FormControl('', { validators: [Validators.required] }),
+    vehicleColor: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl('', { validators: [Validators.required] }),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routes.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        const id = params.get('id');
+        this.mode = 'update';
+        this.driverDetailsService.onSelectDriver(id).subscribe(driver$=>{
+          this.driver = driver$
+
+          this.driverForm.patchValue({
+            image: this.driver.image,
+
+          })
+
+
+
+
+        })
+
+      }
+    });
+  }
 
   onSubmitDriverData() {
-    this.driverService.onSubmitDriverData(this.driverForm.value)
 
+
+    if(this.mode == 'create'){
+      if (this.driverForm.invalid) {
+        console.log('invalid');
+
+        return;
+      }
+      this.driverService.onSubmitDriverData(this.driverForm.value);
+
+    }else{
+      console.log('update');
+      const updatedData = {...this.driverForm.value, id:this.driver._id}
+      this.driverService.onUpdateDriverData(updatedData);
+
+    }
   }
 
   onImageChange(event: Event) {

@@ -1,73 +1,82 @@
-<div  class="data">
-
-
-  <div style="text-align: center;">
-    <h2 style="color: rgb(39, 0, 0);">Add value to created driver</h2>
-</div>
-<div class="form">
-
-  <form [formGroup]="driverForm" (submit)="onSubmitDriverData()">
-    <mat-card>
-      <mat-form-field class="field">
-        <mat-label>Name</mat-label>
-      <input formControlName="name" matInput  name="name" />
-    </mat-form-field>
-
-    <mat-form-field class="field">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" matInput  name="email" />
-    </mat-form-field>
-
-    <mat-form-field class="field">
-      <mat-label>NIC</mat-label>
-      <input formControlName="nic" matInput  name="nic" />
-    </mat-form-field>
-
-    <mat-form-field class="field">
-      <mat-label>Mobile</mat-label>
-      <input formControlName="mobile" matInput  name="mobile" />
-    </mat-form-field>
-
-    <mat-form-field class="field">
-      <mat-label>Vehicle Number</mat-label>
-      <input
-      formControlName="vehicleNumber"
-      matInput
-
-        name="vehicleNo"
-        />
-      </mat-form-field>
-
-      <mat-form-field class="field">
-        <mat-label>Vehicle Color</mat-label>
-        <input
-        formControlName="vehicleColor"
-        matInput
-
-        name="vehicleColor"
-        />
-      </mat-form-field>
-
-    <input type="file" #image (change)="onImageChange($event)" />
-    <div style="text-align: start;">
-      <button (click)="image.click()" mat-stroked-button type="button">
-        Image
-      </button>
-    </div>
-
-    <div
-    class="image-preview"
-    *ngIf="imagePreview != '' && imagePreview != null"
-    >
-    <img [src]="imagePreview" alt="image preview" />
+<div class="data">
+  <div style="text-align: center">
+    <h2 *ngIf="!driver" style="color: rgb(39, 0, 0)">Create Driver</h2>
+    <h2 *ngIf="driver" style="color: rgb(39, 0, 0)">Update Driver</h2>
   </div>
-    <div style="text-align: end;">
-      <button style="background-color: rgb(39, 0, 0);color: white;"
-      mat-raised-button> Save </button>
-    </div>
-  </mat-card>
-</form>
 
-</div>
+  <div class="form">
+    <form [formGroup]="driverForm" (submit)="onSubmitDriverData()">
+      <mat-card>
+        <app-form-input
+        [value]="driver?.email"
+          label="Email"
+          [controler]="driverForm.get('email')"
+        ></app-form-input>
 
+        <app-form-input *ngIf="!driver"
+          label="Password"
+          [controler]="driverForm.get('password')"
+        ></app-form-input>
+
+        <app-form-input
+        [value]="driver?.name"
+          label="Name"
+          [controler]="driverForm.get('name')"
+        ></app-form-input>
+
+        <app-form-input
+        [value]="driver?.nic"
+          label="NIC"
+          [controler]="driverForm.get('nic')"
+        ></app-form-input>
+
+        <app-form-input
+        [value]="driver?.mobile"
+          label="MOBILE"
+          [controler]="driverForm.get('mobile')"
+        ></app-form-input>
+
+        <app-form-input
+        [value]="driver?.vehicleNumber"
+          label="VEHICLE NUMBER"
+          [controler]="driverForm.get('vehicleNumber')"
+        ></app-form-input>
+
+        <app-form-input
+        [value]="driver?.vehicleColor"
+          label="VEHICLE COLOUR"
+          [controler]="driverForm.get('vehicleColor')"
+        ></app-form-input>
+
+        <input type="file" #image (change)="onImageChange($event)" />
+        <div *ngIf="!driver" style="text-align: start">
+          <button (click)="image.click()" mat-stroked-button type="button">
+            Image
+          </button>
+        </div>
+
+        <div
+          class="image-preview"
+          *ngIf="imagePreview != '' && imagePreview != null"
+        >
+          <img [src]="imagePreview" alt="image preview" />
+        </div>
+        <div style="text-align: end">
+          <button *ngIf="!driver"
+            style="background-color: rgb(39, 0, 0); color: white"
+            mat-raised-button
+          >
+            Create Driver
+          </button>
+
+          <button *ngIf="driver"
+            style="background-color: rgb(39, 0, 0); color: white"
+            mat-raised-button
+          >
+            Update Driver
+          </button>
+        </div>
+      </mat-card>
+    </form>
+  </div>
 </div>

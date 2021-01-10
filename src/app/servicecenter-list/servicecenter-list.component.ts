@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from "@angular/router";
 import { DialogOverviewExampleDialogComponent } from "../dialog-overview-example-dialog/dialog-overview-example-dialog.component";
-import { ServiceCenterService } from '../users/service-center/service-center.service';
+import { ServiceCenterService } from '../users/edit-service-center/service-center.service';
 import { Servicecenter } from "./servicecenter";
 import { ServicecenterListService } from "./servicecenter-list.service";
 
@@ -16,7 +16,7 @@ let serviceCenter:Servicecenter[] = []
   styleUrls: ['./servicecenter-list.component.css']
 })
 export class ServicecenterListComponent implements OnInit {
-  displayedColumns: string[] = ['NIC', 'Name', 'Email', 'Action'];
+  displayedColumns: string[] = ['MOBILE', 'Name', 'Email', 'Action'];
   dataSource:any
 
   constructor(

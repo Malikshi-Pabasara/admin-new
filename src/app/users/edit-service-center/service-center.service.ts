@@ -12,29 +12,17 @@ export class ServiceCenterService {
 
 
 
-  onCreateServiceCenter(email: string, password: string) {
-    this.http.post('http://localhost:3000/api/service-centers/create-service', {
-      email,
-      password,
-    }).subscribe((data)=>{
-      console.log(data);
-      this.router.navigate(['/service-data'])
 
-    },error=>{
-      throw new Error(error.message)
-
-    });
-  }
 
   onSubmitServiceCenterData(serviceCenterData:any){
     const {email,name, nic,
-       address, openTime,closeTime,
+       address, openTime,closeTime, password,
         mobile,image} = serviceCenterData
 
         const formData = new FormData()
         formData.append('name', name)
         formData.append('email', email)
-        formData.append('nic', nic)
+        formData.append('password', password)
         formData.append('address', address)
         formData.append('openTime', openTime)
         formData.append('closeTime', closeTime)
@@ -48,4 +36,13 @@ export class ServiceCenterService {
           throw new Error(error.message)
         })
   }
+  onUpdateServiceCenterData(serviceCenterData:any){
+    const id = serviceCenterData.id
+      this.http.patch('http://localhost:3000/api/service-centers/update/'+id, serviceCenterData)
+      .subscribe((data)=>{
+        this.router.navigate(['/service'])
+
+      })
+
+    }
 }
