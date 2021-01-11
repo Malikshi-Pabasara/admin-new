@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DriverDetailsService } from '../driver-details/driver-details.service';
 import { MechanicListService } from '../mechanic-list/mechanic-list.service';
+import { ServicecenterListService } from '../servicecenter-list/servicecenter-list.service';
 import { SpareshopListService } from '../spareshop-list/spareshop-list.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ReportsComponent implements OnInit {
   constructor(private mechanic:MechanicListService,
     private drivers:DriverDetailsService,
     private spare:SpareshopListService,
-    private service:SpareshopListService
+    private service:ServicecenterListService
     ) { }
 
   driverCount = 0
@@ -41,8 +42,8 @@ export class ReportsComponent implements OnInit {
     })
 
     //service
-    this.service.fetchSpareShop()
-    this.spare.spareshops$.subscribe(ser=>{
+    this.service.fetchServiceCenter()
+    this.service.serviceCenters$.subscribe(ser=>{
       this.serviceCenterCount = ser.length
     })
 
