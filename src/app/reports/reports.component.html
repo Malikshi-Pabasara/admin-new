@@ -1,21 +1,86 @@
-<a mat-stroked-button target="_blank" href="http://localhost:3000/api/report/driver">
-  Driver Report
-</a>
-<a mat-stroked-button target="_blank" href="http://localhost:3000/api/report/mechanic">
-  Mechanic Report
-</a>
-<a mat-stroked-button target="_blank" href="http://localhost:3000/api/report/service">
-  Service Center Report
-</a>
-<a mat-stroked-button target="_blank" href="http://localhost:3000/api/report/spare">
-  Spare part shop Report
-</a>
+    <div class="row class3" >
+      <mat-card class="class2" >
+      <canvas width="150" height="150" baseChart
+          [chartType]="pieChartType"
+          [data]=[(driverCount),(mechanicCount),(spareShopCount),(serviceCenterCount)]
+          [labels]="pieChartLabels"
+          [colors]="pieChartColors"
+          [options]="pieChartOptions"
+          [legend]="true">
+      </canvas>
+    </mat-card>
+    </div>
+  
+  <div class="row class4">
+  <mat-card class="class1">
+    <h1><b>Driver Report</b></h1>
+    <circle-progress
+      [radius]="60"
+      [outerStrokeWidth]="12"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#390000'"
+      [innerStrokeColor]="'#775640'"
+      [animation]="true"
+      [animationDuration]="300"
+      [responsive]="true"
+      [percent]=(driverCount)>
+    </circle-progress>
+    <a mat-stroked-button target="_blank" style="width:90%; background-color: rgb(39, 0, 0); color : #fff; margin-top: 2%; margin-bottom: 2%; white-space: nowrap;" href="http://localhost:3000/api/report/driver">
+      Report
+    </a>
+  </mat-card>
 
-<div>
+  <mat-card class="class1">
+      <h1><b>Mechanic Report</b></h1>
+      <circle-progress
+        [radius]="60"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#390000'"
+        [innerStrokeColor]="'#775640'"
+        [animation]="true"
+        [animationDuration]="300"
+        [responsive]="true"
+        [percent]=(mechanicCount)>
+      </circle-progress>
+      <a mat-stroked-button target="_blank" style="width:90%; background-color: rgb(39, 0, 0); color : #fff;  margin-top: 2%; margin-bottom: 2%; white-space: nowrap;" href="http://localhost:3000/api/report/mechanic">
+        Report
+      </a>
+    </mat-card>
 
- <p>drivers: {{driverCount}}</p>
- <p> mechs :{{mechanicCount}}</p>
- <p> spare shops: {{spareShopCount}}</p>
- <p> services: {{serviceCenterCount}}</p>
+    <mat-card class="class1">
+      <h1><b>Spare part shop Report</b></h1>
+      <circle-progress
+        [radius]="60"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#390000'"
+        [innerStrokeColor]="'#775640'"
+        [animation]="true"
+        [animationDuration]="300"
+        [responsive]="true"
+        [percent]=(spareShopCount)>
+      </circle-progress>
+      <a mat-stroked-button target="_blank" style="width:90%; background-color: rgb(39, 0, 0); color : #fff;  margin-top: 2%; margin-bottom: 2%; white-space: nowrap;"  href="http://localhost:3000/api/report/spare">
+        Report
+      </a>
+    </mat-card>
 
-</div>
+    <mat-card class="class1">
+      <h1><b>Service Center Report</b></h1> 
+      <circle-progress
+        [radius]="60"
+        [outerStrokeWidth]="12"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#390000'"
+        [innerStrokeColor]="'#775640'"
+        [animation]="true"
+        [animationDuration]="300"
+        [responsive]="true"
+        [percent]=(serviceCenterCount)>
+      </circle-progress>
+      <a mat-stroked-button target="_blank" style="width:90%; background-color: rgb(39, 0, 0); color : #fff; margin-top: 2%; margin-bottom: 2%; white-space: nowrap;" href="http://localhost:3000/api/report/service">
+        Report
+      </a> 
+    </mat-card>
+  </div>

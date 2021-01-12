@@ -24,6 +24,8 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { ReportsComponent } from './reports/reports.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChartsModule } from 'ng2-charts'; 
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ReportsComponent } from './reports/reports.component';
     FormsModule,
     MaterialModule,
     HttpClientModule,
-    UsersModule
+    UsersModule,
+    ChartsModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [
     {

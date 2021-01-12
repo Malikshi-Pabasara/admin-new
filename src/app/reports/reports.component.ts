@@ -3,6 +3,10 @@ import { DriverDetailsService } from '../driver-details/driver-details.service';
 import { MechanicListService } from '../mechanic-list/mechanic-list.service';
 import { ServicecenterListService } from '../servicecenter-list/servicecenter-list.service';
 import { SpareshopListService } from '../spareshop-list/spareshop-list.service';
+import 'chart.js';
+import *as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { Label } from 'ng2-charts';
+import { ChartOptions, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-reports',
@@ -21,7 +25,7 @@ export class ReportsComponent implements OnInit {
   mechanicCount = 0
   serviceCenterCount = 0
   spareShopCount = 0
-
+  
   ngOnInit(): void {
     // mechanics
     this.mechanic.fetchMechanic()
@@ -46,8 +50,28 @@ export class ReportsComponent implements OnInit {
     this.service.serviceCenters$.subscribe(ser=>{
       this.serviceCenterCount = ser.length
     })
-
-
   }
 
+  public pieChartOptions:ChartOptions = {
+    responsive: true,
+    legend:{
+      position:'top',
+    },
+    
+  };
+  
+  public pieChartLabels: Label[] =['Drivers', 'Mechanics', 'Sparepart Shops', 'Service Centers'];
+  public pieChartType: ChartType ='pie';
+  public pieChartColors= [
+    {
+      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1'],
+      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5'],
+      borderWidth: 2,
+    }
+  ];
+
 }
+      
+  
+  
+
