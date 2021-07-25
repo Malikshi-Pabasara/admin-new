@@ -11,7 +11,7 @@
   <form [formGroup]="serviceCenterForm" (submit)="onSubmitServiceCenter()">
     <mat-card>
 
-      <app-form-input
+      <app-form-input *ngIf="!serviceCenter"
       [value]="serviceCenter?.email"
           label="Email"
           [controler]="serviceCenterForm.get('email')"
@@ -22,8 +22,8 @@
           [controler]="serviceCenterForm.get('password')"
         ></app-form-input>
 
-      <app-form-input
-      [value]="serviceCenter?.name"
+      <app-form-input *ngIf="!serviceCenter"
+      [value]="serviceCenter?.userName"
           label="Name"
           [controler]="serviceCenterForm.get('name')"
         ></app-form-input>

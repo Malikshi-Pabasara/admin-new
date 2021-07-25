@@ -10,7 +10,7 @@ export class DriverDetailsService {
   constructor(private http: HttpClient) {}
   drivers: Driver[] = [];
   drivers$ = new BehaviorSubject<Driver[]>([]);
-  selectedDriver:any = new BehaviorSubject(undefined)
+  selectedDriver: any = new BehaviorSubject(undefined);
 
   // getAllDrivers() {
   //   this.http
@@ -24,19 +24,22 @@ export class DriverDetailsService {
   fetchDriver() {
     this.http
       .get<Driver[]>('http://localhost:3000/api/drivers/alldrivers')
-      .subscribe((data) => {
-        this.drivers = data;
+      .subscribe((data: any) => {
+        console.log(data);
+
+        this.drivers = data['driver'];
 
         this.drivers$.next(this.drivers);
       });
   }
 
-  deleteDriver(id:string){
-    const drivers = this.drivers.filter(driver=> driver._id != id)
-    this.http.delete('http://localhost:3000/api/drivers/deletedriver/'+id)
-    .subscribe(()=>{
-      this.drivers$.next(drivers)
-    })
+  deleteDriver(id: string) {
+    const drivers = this.drivers.filter((driver) => driver._id != id);
+    this.http
+      .delete('http://localhost:3000/api/drivers/deletedriver/' + id)
+      .subscribe(() => {
+        this.drivers$.next(drivers);
+      });
   }
 
   // getAll() {
@@ -44,7 +47,7 @@ export class DriverDetailsService {
   // }
   onSelectDriver(id: any) {
     let driver = this.drivers.find((driver) => driver._id == id);
-    return this.http.get('http://localhost:3000/api/drivers/one-driver/'+id)
+    return this.http.get('http://localhost:3000/api/drivers/driver/' + id);
     // this.selectedDriver.next(driver)
     // return driver;
   }

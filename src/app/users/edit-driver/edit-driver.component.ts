@@ -50,7 +50,7 @@ export class EditDriverComponent implements OnInit {
     }),
     vehicleNumber: new FormControl('', { validators: [Validators.required] }),
     vehicleColor: new FormControl('', { validators: [Validators.required] }),
-    image: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl(''),
   });
 
   ngOnInit(): void {
@@ -58,39 +58,30 @@ export class EditDriverComponent implements OnInit {
       if (params.has('id')) {
         const id = params.get('id');
         this.mode = 'update';
-        this.driverDetailsService.onSelectDriver(id).subscribe(driver$=>{
-          this.driver = driver$
+        this.driverDetailsService
+          .onSelectDriver(id)
+          .subscribe((driver$: any) => {
+            this.driver = driver$['driver'];
 
-          this.driverForm.patchValue({
-            image: this.driver.image,
-
-          })
-
-
-
-
-        })
-
+            this.driverForm.patchValue({
+              image: this.driver.image,
+            });
+          });
       }
     });
   }
 
   onSubmitDriverData() {
-
-
-    if(this.mode == 'create'){
+    if (this.mode == 'create') {
       if (this.driverForm.invalid) {
         console.log('invalid');
-
+        
         return;
       }
       this.driverService.onSubmitDriverData(this.driverForm.value);
-
-    }else{
-      console.log('update');
-      const updatedData = {...this.driverForm.value, id:this.driver._id}
+    } else {
+      const updatedData = { ...this.driverForm.value, id: this.driver._id };
       this.driverService.onUpdateDriverData(updatedData);
-
     }
   }
 

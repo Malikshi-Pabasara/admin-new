@@ -34,7 +34,7 @@ export class EditServiceCenterComponent implements OnInit {
     address: new FormControl('', { validators: [Validators.required] }),
     openTime: new FormControl('', { validators: [Validators.required] }),
     closeTime: new FormControl('', { validators: [Validators.required] }),
-    image: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl(''),
   });
 
   ngOnInit(): void {
@@ -43,8 +43,8 @@ export class EditServiceCenterComponent implements OnInit {
         const id = params.get('id');
         this.mode = 'update';
         this.ServiceCenterDetailsService.onSelectServiceCenter(id)
-        .subscribe(service$=>{
-          this.serviceCenter = service$
+        .subscribe((service$:any)=>{
+          this.serviceCenter = service$['serviceCenter']
 
           this.serviceCenterForm.patchValue({
             image: this.serviceCenter.image
@@ -59,14 +59,12 @@ export class EditServiceCenterComponent implements OnInit {
   onSubmitServiceCenter() {
     if(this.mode == 'create'){
       if (this.serviceCenterForm.invalid) {
-        console.log('invalid');
 
         return;
       }
       this.serviceCenterService.onSubmitServiceCenterData(this.serviceCenterForm.value);
 
     }else{
-      console.log('update');
       const updatedData = {...this.serviceCenterForm.value, id:this.serviceCenter._id}
       this.serviceCenterService.onUpdateServiceCenterData(updatedData);
 

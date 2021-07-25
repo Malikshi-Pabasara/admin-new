@@ -7,7 +7,7 @@
   <div class="form">
     <form [formGroup]="driverForm" (submit)="onSubmitDriverData()">
       <mat-card>
-        <app-form-input
+        <app-form-input *ngIf="!driver"
         [value]="driver?.email"
           label="Email"
           [controler]="driverForm.get('email')"
@@ -18,8 +18,8 @@
           [controler]="driverForm.get('password')"
         ></app-form-input>
 
-        <app-form-input
-        [value]="driver?.name"
+        <app-form-input *ngIf="!driver"
+        [value]="driver?.userName"
           label="Name"
           [controler]="driverForm.get('name')"
         ></app-form-input>
@@ -48,19 +48,20 @@
           [controler]="driverForm.get('vehicleColor')"
         ></app-form-input>
 
-        <input type="file" #image (change)="onImageChange($event)" />
+        <!-- <input type="file" #image (change)="onImageChange($event)" />
         <div *ngIf="!driver" style="text-align: start">
           <button (click)="image.click()" mat-stroked-button type="button">
             Image
           </button>
-        </div>
+        </div> -->
 
-        <div
+        <!-- <div
           class="image-preview"
           *ngIf="imagePreview != '' && imagePreview != null"
         >
           <img [src]="imagePreview" alt="image preview" />
-        </div>
+        </div> -->
+
         <div style="text-align: end">
           <button *ngIf="!driver"
             style="background-color: rgb(39, 0, 0); color: white"

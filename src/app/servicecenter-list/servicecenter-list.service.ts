@@ -23,7 +23,7 @@ export class ServicecenterListService {
 
   fetchServiceCenter() {
     this.http
-      .get<Servicecenter[]>('http://localhost:3000/api/service-centers/allserviceCenters')
+      .get<Servicecenter[]>('http://localhost:3000/api/service-centers/service-centers')
       .subscribe((data) => {
         this.serviceCenters = data;
         this.serviceCenters$.next(this.serviceCenters);
@@ -47,7 +47,7 @@ export class ServicecenterListService {
 
   onSelectServiceCenter(id: any) {
     let driver = this.serviceCenters.find((service) => service._id == id);
-    return this.http.get('http://localhost:3000/api/service-centers/one-service/'+id)
+    return this.http.get('http://localhost:3000/api/service-centers/service-center/'+id)
     // this.selectedDriver.next(driver)
     // return driver;
 

@@ -15,7 +15,7 @@ let spareshops:Spareshop[] = []
   styleUrls: ['./spareshop-list.component.css']
 })
 export class SpareshopListComponent implements OnInit {
-  displayedColumns: string[] = ['MOBILE', 'Name', 'Email', 'Action'];
+  displayedColumns: string[] = ['MOBILE', 'Name', 'Action'];
   dataSource:any
 
   constructor(
@@ -35,6 +35,8 @@ export class SpareshopListComponent implements OnInit {
 
       this.sparepartService.fetchSpareShop()
       this.sparepartService.spareshops$.subscribe((spareshops$)=>{
+        console.log(spareshops$);
+        
         spareshops = spareshops$
         this.dataSource = new MatTableDataSource<Driver>(spareshops);
       })

@@ -23,8 +23,10 @@ export class MechanicListService {
 
   fetchMechanic() {
     this.http
-      .get<Mechanic[]>('http://localhost:3000/api/mechanics/allmechanics')
-      .subscribe((data) => {
+      .get<Mechanic[]>('http://localhost:3000/api/mechanics/mechanics')
+      .subscribe((data:any) => {
+        console.log(data);
+        
         this.mechanics = data;
         this.mechanics$.next(this.mechanics);
       });
@@ -44,7 +46,7 @@ export class MechanicListService {
 
   onSelectMechanic(id: any) {
       let driver = this.mechanics.find((mechanic) => mechanic._id == id);
-      return this.http.get('http://localhost:3000/api/mechanics/one-mechanic/'+id)
+      return this.http.get('http://localhost:3000/api/mechanics/mechanic/'+id)
       // this.selectedDriver.next(driver)
       // return driver;
     }

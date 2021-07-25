@@ -17,7 +17,7 @@ let drivers: Driver[] = [];
 })
 export class DriverDetailsComponent implements OnInit,AfterViewInit {
 
-  displayedColumns: string[] = ['NIC', 'Name', 'Email', 'Action'];
+  displayedColumns: string[] = ['NIC', 'Name', 'Vehicle', 'Action'];
   dataSource:any
 
   constructor(

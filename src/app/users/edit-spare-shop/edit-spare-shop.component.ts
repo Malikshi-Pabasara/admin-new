@@ -38,7 +38,7 @@ export class EditSpareShopComponent implements OnInit {
     about: new FormControl('', { validators: [Validators.required] }),
     openTime: new FormControl('', { validators: [Validators.required] }),
     closeTime: new FormControl('', { validators: [Validators.required] }),
-    image: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl('',),
   });
 
   ngOnInit(): void {
@@ -46,9 +46,10 @@ export class EditSpareShopComponent implements OnInit {
       if (params.has('id')) {
         const id = params.get('id');
         this.mode = 'update';
-        this.spareshopDetailsService.onSelectShop(id).subscribe((service$) => {
-          this.spareShop = service$;
-
+        this.spareshopDetailsService.onSelectShop(id).subscribe((service$:any) => {
+          this.spareShop = service$['spareshop'];
+          console.log(service$);
+          
           this.spareShopForm.patchValue({
             image: this.spareShop.image,
           });
@@ -60,13 +61,11 @@ export class EditSpareShopComponent implements OnInit {
   onSubmitDriverData() {
     if (this.mode == 'create') {
       if (this.spareShopForm.invalid) {
-        console.log('invalid');
 
         return;
       }
       this.sparepartService.onSubmitSpareshopData(this.spareShopForm.value);
     } else {
-      console.log('update');
       const updatedData = {
         ...this.spareShopForm.value,
         id: this.spareShop._id,

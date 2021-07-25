@@ -32,8 +32,8 @@ export class DriverProfileComponent implements OnInit {
       if (paramMap.has('id')) {
 
         let id = paramMap.get('id');
-        this.driverDetailsService.onSelectDriver(id).subscribe(driver$=>{
-          this.driver = driver$
+        this.driverDetailsService.onSelectDriver(id).subscribe((driver$:any)=>{
+          this.driver = driver$['driver']
         })
       }
     });

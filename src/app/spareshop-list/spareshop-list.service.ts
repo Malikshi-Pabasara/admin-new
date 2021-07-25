@@ -23,7 +23,7 @@ export class SpareshopListService {
 
   fetchSpareShop() {
     this.http
-      .get<Spareshop[]>('http://localhost:3000/api/sparepart-shops/allsparepartShops')
+      .get<Spareshop[]>('http://localhost:3000/api/sparepart-shops/shops')
       .subscribe((data) => {
 
         this.spareshops = data;
@@ -48,7 +48,7 @@ export class SpareshopListService {
 
   onSelectShop(id: any) {
     let driver = this.spareshops.find((spare) => spare._id == id);
-    return this.http.get('http://localhost:3000/api/sparepart-shops/one-spareshop/'+id)
+    return this.http.get('http://localhost:3000/api/sparepart-shops/spare-shop/'+id)
     // this.selectedDriver.next(driver)
     // return driver;
   }

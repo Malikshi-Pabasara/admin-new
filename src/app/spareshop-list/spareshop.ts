@@ -1,6 +1,7 @@
 export interface Spareshop {
     _id?: string;
     name?: string;
+    userName?:string; 
     email?: string;
     mobile?: string;
     address?: string;

@@ -11,7 +11,7 @@
   <form [formGroup]="spareShopForm" (submit)="onSubmitDriverData()">
     <mat-card>
 
-      <app-form-input
+      <app-form-input *ngIf="!spareShop"
       [value]="spareShop?.email"
           label="Email"
           [controler]="spareShopForm.get('email')"
@@ -22,8 +22,8 @@
           [controler]="spareShopForm.get('password')"
         ></app-form-input>
 
-      <app-form-input
-      [value]="spareShop?.name"
+      <app-form-input *ngIf="!spareShop"
+      [value]="spareShop?.userName"
           label="Name"
           [controler]="spareShopForm.get('name')"
         ></app-form-input>

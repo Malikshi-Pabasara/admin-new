@@ -15,22 +15,40 @@ export class MechanicService {
        about, address,password,
         mobile,image} = driverData
 
-        const formData = new FormData()
-        formData.append('name', name)
-        formData.append('email', email)
-        formData.append('password', password)
-        formData.append('nic', nic+'V')
-        formData.append('address', address)
-        formData.append('about', about)
-        formData.append('mobile', mobile)
-        formData.append('image', image)
+        this.http
+      .post('http://localhost:3000/api/mechanics/signup', {
+        email,
+        password,
+        userName: name,
+      })
+      .subscribe(
+        (data: any) => {
+          console.log(data['userId']);
+          let id = data['userId']['_id'];
+          const formData = {
+            userName: name,
+            nic: nic + 'V',
+            mobile,
+            userId: id,
+          };
 
-        this.http.post('http://localhost:3000/api/mechanics/add-data',
-        formData).subscribe((data)=>{
-          this.router.navigate(['/mechanic'])
-        },error=>{
-          throw new Error(error.message)
-        })
+          console.log(formData);
+
+          this.http
+            .post('http://localhost:3000/api/mechanics/add-data', formData)
+            .subscribe(
+              () => {
+                this.router.navigate(['/mechanic']);
+              },
+              (error) => {
+                throw new Error(error.message);
+              }
+            );
+        },
+        (error) => {
+          throw new Error(error.message);
+        }
+      );
   }
   onUpdateMechanicData(mechanicData:any){
     const id = mechanicData.id

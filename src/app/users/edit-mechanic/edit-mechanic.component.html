@@ -10,7 +10,7 @@
       <mat-card>
 
         <app-form-input
-          label="Email"
+          label="Email" *ngIf="!mechanic"
           [value]="mechanic?.email"
           [controler]="mechanicForm.get('email')"
         ></app-form-input>
@@ -21,7 +21,7 @@
         ></app-form-input>
 
         <app-form-input
-        [value]="mechanic?.name"
+        [value]="mechanic?.userName"
           label="Name"
           [controler]="mechanicForm.get('name')"
         ></app-form-input>
@@ -38,24 +38,24 @@
           [controler]="mechanicForm.get('mobile')"
         ></app-form-input>
 
-        <app-form-input
+        <app-form-input *ngIf="!mechanic"
           label="Address"
           [value]="mechanic?.address"
           [controler]="mechanicForm.get('address')"
         ></app-form-input>
 
-        <app-form-input
+        <app-form-input *ngIf="!mechanic"
           label="About"
           [value]="mechanic?.about"
           [controler]="mechanicForm.get('about')"
         ></app-form-input>
 
-        <input type="file" #image (change)="onImageChange($event)" />
+        <!-- <input type="file" #image (change)="onImageChange($event)" />
         <div *ngIf="!mechanic" style="text-align: start">
           <button (click)="image.click()" mat-stroked-button type="button">
             Image
           </button>
-        </div>
+        </div> -->
 
         <div
           class="image-preview"

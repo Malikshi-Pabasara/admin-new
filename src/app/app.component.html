@@ -1,27 +1,26 @@
-<mat-toolbar style="background-color: rgb(39, 0, 0); color : #fff">
+<span *ngIf="isLoging">
+  <mat-toolbar style="background-color: rgb(39, 0, 0); color: #fff">
+    <button>
+      <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
+    </button>
 
-  <button>
-     <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
-  </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span color="#fff">Home</span>
+      </button>
 
-   <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/">
-            <mat-icon >home</mat-icon>
-            <span color="#fff">Home</span>
-        </button>
-
-        <button mat-menu-item routerLink="">
-            <mat-icon >logout</mat-icon>
-            <span color="#fff">Logout</span>
-        </button>
-
-  </mat-menu>
-    <span style="margin-left: 10px;">Admin Panel</span>
-    <span style="flex: 1 1 auto;"></span>
-    <span *ngIf="isLoging"> <button mat-button (click)="logout()"> Logout </button> </span>
+      <button mat-menu-item routerLink="">
+        <mat-icon>logout</mat-icon>
+        <span color="#fff">Logout</span>
+      </button>
+    </mat-menu>
+    <span style="margin-left: 10px">Admin Panel</span>
+    <span style="flex: 1 1 auto"></span>
+    <span *ngIf="isLoging">
+      <button mat-button (click)="logout()">Logout</button>
+    </span>
   </mat-toolbar>
-
-
-
+</span>
 
 <router-outlet></router-outlet>

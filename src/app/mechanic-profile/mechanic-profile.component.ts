@@ -3,12 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Mechanic } from '../mechanic-list/mechanic';
 import { MechanicListService } from '../mechanic-list/mechanic-list.service';
 
-
-
 @Component({
   selector: 'app-mechanic-profile',
   templateUrl: './mechanic-profile.component.html',
-  styleUrls: ['./mechanic-profile.component.css']
+  styleUrls: ['./mechanic-profile.component.css'],
 })
 export class MechanicProfileComponent implements OnInit {
   userId!: string;
@@ -25,9 +23,13 @@ export class MechanicProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         let id = paramMap.get('id');
 
-        this.mechanicListService.onSelectMechanic(id).subscribe(mechanic$=>{
-          this.mechanic = mechanic$
-        })
+        this.mechanicListService
+          .onSelectMechanic(id)
+          .subscribe((mechanic$: any) => {
+            console.log(mechanic$);
+
+            this.mechanic = mechanic$['mechanic'];
+          });
       }
     });
   }
@@ -35,7 +37,7 @@ export class MechanicProfileComponent implements OnInit {
   mechanicDetails() {
     this.router.navigate(['/mechanic']);
   }
-  updateMechanic(id:any){
-    this.router.navigate(['/create-mechanic', id])
+  updateMechanic(id: any) {
+    this.router.navigate(['/create-mechanic', id]);
   }
 }

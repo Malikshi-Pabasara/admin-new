@@ -16,7 +16,7 @@ let serviceCenter:Servicecenter[] = []
   styleUrls: ['./servicecenter-list.component.css']
 })
 export class ServicecenterListComponent implements OnInit {
-  displayedColumns: string[] = ['MOBILE', 'Name', 'Email', 'Action'];
+  displayedColumns: string[] = ['MOBILE', 'Name', 'Action'];
   dataSource:any
 
   constructor(
@@ -36,6 +36,8 @@ export class ServicecenterListComponent implements OnInit {
 
       this.serviceCenter.fetchServiceCenter()
       this.serviceCenter.serviceCenters$.subscribe((serviceCenters$)=>{
+        console.log(serviceCenters$);
+        
         serviceCenter = serviceCenters$
         this.dataSource = new MatTableDataSource<Servicecenter>(serviceCenter);
       })

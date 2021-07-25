@@ -44,7 +44,7 @@ export class EditMechanicComponent implements OnInit {
     }),
     address: new FormControl('', { validators: [Validators.required] }),
     about: new FormControl('', { validators: [Validators.required] }),
-    image: new FormControl('', { validators: [Validators.required] }),
+    image: new FormControl('', ),
   });
 
   ngOnInit(): void {
@@ -52,8 +52,8 @@ export class EditMechanicComponent implements OnInit {
       if (params.has('id')) {
         const id = params.get('id');
         this.mode = 'update';
-        this.mechanicDetailsService.onSelectMechanic(id).subscribe(service$=>{
-          this.mechanic = service$
+        this.mechanicDetailsService.onSelectMechanic(id).subscribe((service$:any)=>{
+          this.mechanic = service$['mechanic']
 
           this.mechanicForm.patchValue({
             image: this.mechanic.image

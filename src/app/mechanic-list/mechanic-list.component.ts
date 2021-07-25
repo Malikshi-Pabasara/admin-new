@@ -7,10 +7,9 @@ import { DialogOverviewExampleDialogComponent } from "../dialog-overview-example
 import { DriverDetailsService } from '../driver-details/driver-details.service';
 import { Mechanic } from "./mechanic";
 import { MechanicListService } from "./mechanic-list.service";
-import {Driver} from '../driver-details/driver'
 import { MechanicService } from '../users/edit-mechanic/mechanic.service';
 
-let mechanics:Driver[] = []
+let mechanics:Mechanic[] = []
 
 @Component({
   selector: 'app-mechanic-list',
@@ -19,7 +18,7 @@ let mechanics:Driver[] = []
 })
 export class MechanicListComponent implements OnInit {
 
-  displayedColumns: string[] = ['NIC', 'Name', 'Email', 'Action'];
+  displayedColumns: string[] = ['NIC', 'Name', 'Action'];
   dataSource:any
 
   constructor(
@@ -38,9 +37,10 @@ export class MechanicListComponent implements OnInit {
     ngOnInit() {
 
       this.mechanicDetailsService.fetchMechanic()
-      this.mechanicDetailsService.mechanics$.subscribe((mechanics$)=>{
+      this.mechanicDetailsService.mechanics$.subscribe((mechanics$:any)=>{
+        
         mechanics = mechanics$
-        this.dataSource = new MatTableDataSource<Driver>(mechanics);
+        this.dataSource = new MatTableDataSource<Mechanic>(mechanics);
       })
 
 

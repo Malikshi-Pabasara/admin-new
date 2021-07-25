@@ -3,13 +3,11 @@
 </div>
 <div class="col class3">
   <mat-toolbar class="class1">
-    <mat-toolbar-row>{{spareshop?.name}} profile</mat-toolbar-row>
+    <mat-toolbar-row>{{spareshop?.userName}} profile</mat-toolbar-row>
   </mat-toolbar>
   <mat-list>
     <div class="col class5">
       <mat-list-item>Name:</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Email:</mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>Mobile Number:</mat-list-item>
       <mat-divider></mat-divider>
@@ -23,9 +21,7 @@
       <mat-divider></mat-divider>
     </div>
     <div class="col class6">
-    <mat-list-item>{{spareshop?.name}}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>{{spareshop?.email}}</mat-list-item>
+    <mat-list-item>{{spareshop?.userName}}</mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>{{spareshop?.mobile}}</mat-list-item>
     <mat-divider></mat-divider>
@@ -39,7 +35,7 @@
     <mat-divider></mat-divider>
 
     <div class="bottom__panel">
-      <button mat-raised-button (click)="updateShop(spareshop?._id)"
+      <button mat-raised-button (click)="updateShop(spareshop?.userId)"
        class="class8">Update Shop</button>
       <button mat-raised-button class="class8" routerLink="/spare">
         Shop List
